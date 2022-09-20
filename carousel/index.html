@@ -67,6 +67,19 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+	  
+	  .search_bar {
+	    display: flex;
+		align-items: center;
+		width: 50rem;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+		}
+		
+	#searchBarWrap{
+		display: flex;
+		justify-content: center;
+	}
     </style>
 
     
@@ -88,17 +101,12 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Clubs</a>
+            <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Survey</a>
+            <a class="nav-link disabled">Disabled</a>
           </li>
         </ul>
-        <!--<form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>-->
-	    <a href="#" role="button"  style="text-align:right"><img src="avatar-placeholder.png" height = "4%" width = "4%" style = "border-radius:50%"></img></a>
       </div>
     </div>
   </nav>
@@ -157,8 +165,13 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
-
+	<h3 style="text-align:center">Search for Organizations</h3>
+  <div id="searchBarWrap">
+    <form class="search_bar">
+	  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	  <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
