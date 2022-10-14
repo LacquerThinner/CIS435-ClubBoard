@@ -30,20 +30,50 @@
 		
 		.leftpane {
 			margin-top: 10px;
+			margin-right: 10px;
 			width: 20%;
 			height: 100%;
 			float: left;
-			background-color: rosybrown;
+			background-color: gray;
 			border-collapse: collapse;
 		}
 
 		.middlepane {
 			margin-top: 10px;
-			width: 80%;
+			width: 75%;
 			height: 100%;
 			float: left;
-			background-color: royalblue;
 			border-collapse: collapse;
+			min-height: 100vh;
+			padding: 2rem;  
+			background-size: cover;
+		}
+		
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+		
+		.grid-item {
+			width: 100%;
+			height: 100px;
+			background-color: gray;
+		}
+		
+		.grid-item img{
+			height: 100px;
+			width: 100px;
+			float: left;
+			border-radius: 50%;
+		}
+		
+		.grid-item h2{
+			text-align: center;
+		}
+		
+		.grid-item p{
+			text-align: center;
 		}
 	
       @media (min-width: 768px) {
@@ -69,8 +99,6 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
-	  
-	  
     </style>
 
     
@@ -105,8 +133,41 @@
 </header>
 
 <div class="container">
-	<div class="leftpane">THIS IS WHERE I PLAN ON PUTTING THE FILTER SETTINGS</div>
-	<div class="middlepane">THIS IS WHERE I PLAN ON PUTTING THE CLUBS LIST</div>
+	<div class="leftpane">THIS IS WHERE I PLAN ON PUTTING THE FILTER SETTINGS WHEN THEY ARE NEEDED</div>
+	<div class="middlepane">
+		<div class="grid-container">
+			<div class="grid-item">
+				<img src="images/Photo.jpg"></img>
+				<h2>Filler Club</h2>
+				<p>Club Description</p>
+			</div>
+			<div class="grid-item">
+				<img src="images/Photo.jpg"></img>
+				<h2>Filler Club</h2>
+				<p>Club Description</p>
+			</div>
+			<div class="grid-item">
+				<img src="images/Photo.jpg"></img>
+				<h2>Filler Club</h2>
+				<p>Club Description</p>
+			</div>
+			<div class="grid-item">
+				<img src="images/Photo.jpg"></img>
+				<h2>Filler Club</h2>
+				<p>Club Description</p>
+			</div>
+			<div class="grid-item">
+				<img src="images/Photo.jpg"></img>
+				<h2>Filler Club</h2>
+				<p>Club Description</p>
+			</div>
+			<div class="grid-item">
+				<img src="images/Photo.jpg"></img>
+				<h2>Filler Club</h2>
+				<p>Club Description</p>
+			</div>
+		</div>
+	</div>
 </div>
 
   </body>
