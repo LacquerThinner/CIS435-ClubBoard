@@ -194,7 +194,7 @@
 		    while ($row = mysqli_fetch_array($result)) {?> 
 				<a href="club-profile.php" style="color:black;text-decoration: none;">
 					<div class="grid-item">
-						<img src="images/Photo.jpg" alt="Club Photo">
+						<img src="images/<?php echo $row['clubPhoto']?>" alt="images/avatar-placeholder.png">
 						<h2><?php echo $row['name']; ?></h2>
 						<p><?php echo $row['bio']; ?></p>
 					</div>
