@@ -192,9 +192,9 @@
 		<div class="grid-container">
 		<?php
 		    while ($row = mysqli_fetch_array($result)) {?> 
-				<a href="club-profile.php" style="color:black;text-decoration: none;">
+				<a href="club-profile.php?id=<?php echo $row['clubID'] ?>" style="color:black;text-decoration: none;">
 					<div class="grid-item">
-						<img src="images/<?php echo $row['clubPhoto']?>" alt="images/avatar-placeholder.png">
+						<img src="images/Photo.jpg" alt="Club Photo">
 						<h2><?php echo $row['name']; ?></h2>
 						<p><?php echo $row['bio']; ?></p>
 					</div>

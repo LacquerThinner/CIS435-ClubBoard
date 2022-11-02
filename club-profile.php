@@ -91,6 +91,7 @@
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
+ 
     
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -120,7 +121,33 @@
 
 
 <main>
+<?php
+	$club_id = $_GET['id'];
+	
+	$conn = mysqli_connect('localhost', 'root', '');  
 
+		// root is the default username 
+
+		// ' ' is the default password
+
+		if (! $conn) {  
+
+				die("Connection failed" . mysqli_connect_error());  
+
+		}  
+
+		else {  
+
+				// connect to the database named group6_db
+
+				mysqli_select_db($conn, 'group6_db');  
+
+		} 
+		
+		$getQuery = "select * from club_table where clubID = 'club_id'";
+		
+		$result = mysqli_query($conn, $getQuery);
+?>
 <!-- Page Container -->
 <div class="container" style="max-width:1400px;margin-top:80px">    
   <!-- The Grid -->
