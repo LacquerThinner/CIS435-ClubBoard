@@ -10,19 +10,9 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
 
-    
-
-    
-
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-	
-		h2 {
-			text-align: center; 
-			margin-top: 10px;
-		}
-	
 		body, html {
 			width: 100%;
 			height: 100%;
@@ -36,20 +26,49 @@
 		
 		.leftpane {
 			margin-top: 10px;
+			margin-right: 10px;
 			width: 20%;
 			height: 100%;
 			float: left;
-			background-color: rosybrown;
 			border-collapse: collapse;
 		}
 
 		.middlepane {
 			margin-top: 10px;
-			width: 80%;
+			width: 75%;
 			height: 100%;
 			float: left;
-			background-color: royalblue;
 			border-collapse: collapse;
+			min-height: 100vh;
+			padding: 2rem;  
+			background-size: cover;
+		}
+		
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+		
+		.grid-item {
+			width: 100%;
+			height: 100px;
+			background-color: silver;
+		}
+		
+		.grid-item img{
+			height: 100px;
+			width: 100px;
+			float: left;
+			border-radius: 50%;
+		}
+		
+		.grid-item h2{
+			text-align: center;
+		}
+		
+		.grid-item p{
+			text-align: center;
 		}
 	
       @media (min-width: 768px) {
@@ -75,8 +94,6 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
-	  
-	  
     </style>
 
     
@@ -84,7 +101,64 @@
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
+  
+  <?php
+	$conn = mysqli_connect('localhost', 'root', '');  
 
+		// root is the default username 
+
+		// ' ' is the default password
+
+		if (! $conn) {  
+
+				die("Connection failed" . mysqli_connect_error());  
+
+		}  
+
+		else {  
+
+				// connect to the database named group6_db
+
+				mysqli_select_db($conn, 'group6_db');  
+
+		} 
+	
+		if (!isset ($_GET['page']) ) {  
+
+			$page_number = 1;  
+
+		} else {  
+
+			$page_number = $_GET['page'];  
+
+		}  
+
+	// variable to store the number of rows per page
+
+	$limit = 5;  
+
+		// get the initial page number
+
+		$initial_page = ($page_number-1) * $limit;
+	// query to retrieve all rows from the table Countries
+
+    $getQuery = "select *from club_table";  
+
+    // get the result
+
+    $result = mysqli_query($conn, $getQuery);  
+
+    $total_rows = mysqli_num_rows($result); 
+
+    // get the required number of pages
+
+    $total_pages = ceil ($total_rows / $limit);
+
+	$getQuery = "SELECT *FROM club_table LIMIT " . $initial_page . ',' . $limit;  
+
+    $result = mysqli_query($conn, $getQuery);   
+?>	
+    
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
@@ -112,51 +186,31 @@
 </header>
 
 
-<h2>Club Survey</h2>
-<form>
-<div class="container-md themed-container">
- <p>1. Question 1 goes here:</p>
-   <input type="radio" id="option1.1" name="question1" value="option1.1">
-   <label for="option1.1">First Option</label><br>
-   <input type="radio" id="option1.2" name="question1" value="option1.2">
-   <label for="option1.2">Second Option</label><br>
-   <input type="radio" id="option1.3" name="question1" value="option1.3">
-   <label for="option1.3">Third Option</label>
-</div>
- 
-<div class="container-md themed-container">
- <p>2. Question 2 goes here:</p>
-   <input type="radio" id="option2.1" name="question2" value="option2.1">
-   <label for="option2.1">First Option</label><br>
-   <input type="radio" id="option2.2" name="question2" value="option2.2">
-   <label for="option2.2">Second Option</label><br>
-   <input type="radio" id="option2.3" name="question2" value="option2.3">
-   <label for="option2.3">Third Option</label>
-</div>
- 
-<div class="container-md themed-container">
- <p>3. Question 3 goes here:</p>
-   <input type="radio" id="option3.1" name="question3" value="option3.1">
-   <label for="option3.1">First Option</label><br>
-   <input type="radio" id="option3.2" name="question3" value="option3.2">
-   <label for="option3.2">Second Option</label><br>
-   <input type="radio" id="option3.3" name="question3" value="option3.3">
-   <label for="option3.3">Third Option</label>
-</div>
- 
-<div class="container-md themed-container">
- <p>4. Question 4 goes here:</p>
-   <input type="radio" id="option4.1" name="question4" value="option4.1">
-   <label for="option4.1">First Option</label><br>
-   <input type="radio" id="option4.2" name="question4" value="option4.2">
-   <label for="option4.2">Second Option</label><br>
-   <input type="radio" id="option4.3" name="question4" value="option4.3">
-   <label for="option4.3">Third Option</label>
+<div class="container">
+	<div class="leftpane"><!--THIS IS WHERE I PLAN ON PUTTING THE FILTER SETTINGS WHEN THEY ARE NEEDED--></div>
+	<div class="middlepane">
+		<div class="grid-container">
+		<?php
+		    while ($row = mysqli_fetch_array($result)) {?> 
+				<a href="club-profile.php" style="color:black;text-decoration: none;">
+					<div class="grid-item">
+						<img src="images/Photo.jpg" alt="Club Photo">
+						<h2><?php echo $row['name']; ?></h2>
+						<p><?php echo $row['bio']; ?></p>
+					</div>
+				</a>
+			<?php } ?>
+			
+			<p><?php
+			for($page_number = 1; $page_number<= $total_pages; $page_number++) {  
+
+				echo '<a href = "clubs.php?page=' . $page_number . '">' . $page_number . ' </a>';  
+
+			}  
+			?></p>
+		</div>
+	</div>
 </div>
 
-<div class="container-md themed-container">
- <input type="submit" value="Submit">
- </div>
-</form>
   </body>
 </html>
