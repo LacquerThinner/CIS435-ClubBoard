@@ -91,8 +91,6 @@
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
- 
-    
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
@@ -144,9 +142,11 @@
 
 		} 
 		
-		$getQuery = "select * from club_table where clubID = 'club_id'";
+		$getQuery = "select * from club_table where clubID = " . $club_id;
 		
 		$result = mysqli_query($conn, $getQuery);
+		
+		$row = mysqli_fetch_array($result);
 ?>
 <!-- Page Container -->
 <div class="container" style="max-width:1400px;margin-top:80px">    
@@ -157,12 +157,12 @@
       <!-- Profile -->
       <div class="card">
         <div class="container">
-         <h4 class="center">Club Name</h4>	<!-- Going to add database functions to get user information 
+         <h4 class="center"><?php echo $row['name']; ?></h4>	<!-- Going to add database functions to get user information 
 												 using an ID, and eventually for clubs as well -->
-         <p class="center circle"><img src="images/avatar-placeholder.png" style="border-radius:50%; width:25%; height:25%;" alt="Avatar"></p>
+         <p class="center circle"><img src= <?php echo "images/" . $row['clubPhoto']; ?> style="border-radius:50%; width:25%; height:25%;" alt="Avatar"></p>
          <hr>
-         <p><img src="images/pencil.png" style="width:5%; height:5%;" alt="pencil"> Bio</p>
-         <p><img src="images/house.png" style="width:5%; height:5%;" alt="house"> Contact Information</p>
+         <p><img src="images/pencil.png" style="width:5%; height:5%;" alt="pencil"> <?php echo $row['bio']; ?></p>
+         <p><img src="images/house.png" style="width:5%; height:5%;" alt="house"> <?php echo $row['contact']; ?></p>
         </div>
       </div>
       <br>
@@ -213,7 +213,7 @@
 	<!-- Interests --> 
       <div class="card">
         <div class="container">
-          <p>Interests/Tags</p>
+          <p><?php echo $row['catagory']; ?></p>
           <p>
             <span class="badge badge-primary">News</span>
             <span class="badge badge-secondary">W3Schools</span>
