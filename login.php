@@ -27,16 +27,21 @@
 	}
 
 	button {
-	  background-color: #04AA6D;
-	  color: white;
+	  background-color: silver;
+	  color: black;
 	  padding: 14px 20px;
 	  margin: 8px 0;
-	  border: none;
+	  border-color: black;
+	  border-style: solid;
 	  cursor: pointer;
 	  width: 100%;
 	}
 	
 		.login-container {
+			border-color: black;
+			border-style: groove;
+			padding-left: 25px;
+			padding-right:25px;
 			text-align: center;
 			margin-left: auto;
 			margin-right: auto;
@@ -148,6 +153,8 @@
 <main>
 <form action="login.php" method="post">
 	<div class="login-container">
+		<h1 href="#"><b>Wolverines Unite!</b></h1><br>
+	
 		<label for="uname"><b>Username</b></label>
 		<input type="text" placeholder="Username" name="uname" required>
 		
