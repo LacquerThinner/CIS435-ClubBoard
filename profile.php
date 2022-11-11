@@ -1,4 +1,13 @@
 <!doctype html>
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: login.html');
+	exit;
+}
+?>
 <html lang="en">
   <head>
 	<meta charset="utf-8">
@@ -93,29 +102,28 @@
           </li>
         </ul>
       </div>
+	  <a style="text-align:right" role="button" href="logout.php">Log out</a>
 	 <a style="text-align:right" role="button" href="profile.html"><img src="images/avatar-placeholder.png" width="4%" height="4%" style="border-radius:50%"></img></a>
     </div>
   </nav>
 </header>
 
 <?php
-//require('database.php');
-//Get UserID for attribute references to fill out profile
-$user_id = $_GET['id'];
-
-$conn  = mysqli_connect('localhost', 'root', '');
-if(!$conn){
-	die("Connection failed".mysqli_connect_error());
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'group6_db';
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if (mysqli_connect_errno()) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-else  {
-	//Connect to database named group6_db
-	mysqli_select_db($conn, 'group6_db');
-}
-
-//Query user
-$queryUser = "SELECT * FROM user_table WHERE userID = " . $user_id;
-$result = mysqli_query($conn, $queryUser);
-$row = mysqli_fetch_array($result);
+// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+$stmt = $con->prepare('SELECT password, email, fname, lname, userPhoto, bio FROM user_table WHERE userID = ?');
+// In this case we can use the account ID to get the account info.
+$stmt->bind_param('i', $_SESSION['id']);
+$stmt->execute();
+$stmt->bind_result($password, $email, $fname, $lname, $userPhoto, $bio);
+$stmt->fetch();
 ?>
 
 <!-- Page Container -->
@@ -127,12 +135,12 @@ $row = mysqli_fetch_array($result);
       <!-- Profile -->
       <div class="card">
         <div class="container">
-         <h4 class="center"><?php echo $row['fname']; echo ' '; echo $row['lname']; ?></h4>
-         <p class="center circle"><img src=<?php echo "images/" . $row['userPhoto']; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
+         <h4 class="center"><?php echo $fname; echo ' '; echo $lname; ?></h4>
+         <p class="center circle"><img src=<?php echo "images/" . $userPhoto; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
          <hr>
          <p><img src="images/pencil.png" width="5%" height="5%"></img> Job Title, Company / School</p>
-         <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $row['email']; ?></p>
-         <p><img src="images/cake.png" width="5%" height="5%"></img><?php echo ' ' . $row['bio']; ?></p>
+         <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $email; ?></p>
+         <p><img src="images/cake.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
         </div>
       </div>
       <br>
@@ -201,7 +209,7 @@ $row = mysqli_fetch_array($result);
       </div>
       
       <div class="container"><br>
-        <img src=<?php echo "images/" . $row['userPhoto']; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
+        <img src=<?php echo "images/" . $userPhoto; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
         <h5>John Doe</h5><br>
         <hr class="clear">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
