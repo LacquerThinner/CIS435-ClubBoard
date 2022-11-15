@@ -118,11 +118,11 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email, fname, lname, userPhoto, bio FROM user_table WHERE userID = ?');
+$stmt = $con->prepare('SELECT password, email, realname, userPhoto, bio FROM user_table WHERE userID = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email, $fname, $lname, $userPhoto, $bio);
+$stmt->bind_result($password, $email, $realname, $userPhoto, $bio);
 $stmt->fetch();
 ?>
 
@@ -135,7 +135,7 @@ $stmt->fetch();
       <!-- Profile -->
       <div class="card">
         <div class="container">
-         <h4 class="center"><?php echo $fname; echo ' '; echo $lname; ?></h4>
+         <h4 class="center"><?php echo $realname; ?></h4>
          <p class="center circle"><img src=<?php echo "images/" . $userPhoto; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
          <hr>
          <p><img src="images/pencil.png" width="5%" height="5%"></img> Job Title, Company / School</p>
@@ -210,12 +210,13 @@ $stmt->fetch();
       
       <div class="container"><br>
         <img src=<?php echo "images/" . $userPhoto; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
-        <h5>John Doe</h5><br>
+        <h5><?php echo $realname ?></h5><br>
         <hr class="clear">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           
         <button type="button" class="btn btn-light">  Like</button> 
         <button type="button" class="btn btn-light">  Comment</button> 
+		<a style="text-align:right" role="button" href="editUser.html">Edit Profile</a>
       </div>
       
       
