@@ -27,21 +27,33 @@
 		.leftpane {
 			margin-top: 10px;
 			margin-right: 10px;
-			width: 20%;
+			width: 25%;
 			height: 100%;
 			float: left;
 			border-collapse: collapse;
+			padding: 2rem;
 		}
 
 		.middlepane {
 			margin-top: 10px;
-			width: 75%;
+			width: 70%;
 			height: 100%;
 			float: left;
 			border-collapse: collapse;
 			min-height: 100vh;
 			padding: 2rem;  
 			background-size: cover;
+		}
+		
+		input[type=submit] {
+		  background-color: silver;
+		  color: black;
+		  padding: 14px 20px;
+		  margin: 8px 0;
+		  border-color: black;
+		  border-style: solid;
+		  cursor: pointer;
+		  width: 100%;
 		}
 		
 		.grid-container {
@@ -187,7 +199,14 @@
 
 
 <div class="container">
-	<div class="leftpane"><!--THIS IS WHERE I PLAN ON PUTTING THE FILTER SETTINGS WHEN THEY ARE NEEDED--></div>
+	<div class="leftpane">
+		<h2>Have a club idea?</h2> 
+		<p>Register a club with us!</p>
+		<form action="club_registration.html">
+			<input type="submit" value="Register a Club!"/>
+		</form>
+
+	</div>
 	<div class="middlepane">
 		<div class="grid-container">
 		<?php
