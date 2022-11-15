@@ -7,14 +7,11 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.101.0">
     <title>Wolverines Unite!</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">	
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
+	<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
-
-    
-
-    
-
-<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
 	input[type=text], input[type=password] {
@@ -26,7 +23,7 @@
 	  box-sizing: border-box;
 	}
 
-	button {
+	input[type=submit] {
 	  background-color: silver;
 	  color: black;
 	  padding: 14px 20px;
@@ -158,13 +155,16 @@
 				<a href="login.html" class="active">Login</a>
 				<a href="register.html">Register</a>
 			</div>
-		<label for="username"><b>Username</b></label>
+		<label for="username">
+			<i class="fas fa-user"></i>
+		</label>
 		<input type="text" placeholder="Username" name="username" required>
-		
-		<label for="password"><b>Password</b></label>
+		<label for="email">
+			<i class="fas fa-envelope"></i>
+		</label>
 		<input type="password" placeholder="Password" name="password" required>
 		
-		<button type="submit">Login</button>
+		<input type="submit" value="Login">
 </main>
 
 
