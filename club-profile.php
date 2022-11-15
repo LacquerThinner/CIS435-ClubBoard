@@ -1,4 +1,12 @@
 <!doctype html>
+<?php // We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: login.html');
+	exit;
+}
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -111,7 +119,7 @@
           </li>
         </ul>
 		
-		<a class="nav-link profile" href="profile.html"><img src="images/avatar-placeholder.png" style="border-radius:50%;height:40px;width:40px;"></a>
+		<a class="nav-link profile" href="profile.php"><img src="images/avatar-placeholder.png" style="border-radius:50%;height:40px;width:40px;"></a>
       </div>
     </div>
   </nav>
