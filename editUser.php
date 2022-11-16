@@ -66,7 +66,6 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 		$uploadOk = 0;
 	}
 	
-	echo 'File type is ' .$target_file.'<br>';
 	// Allow certain file formats
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
 		echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
