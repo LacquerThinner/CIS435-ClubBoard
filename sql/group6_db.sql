@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2022 at 07:16 PM
+-- Generation Time: Nov 23, 2022 at 08:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -46,6 +46,28 @@ INSERT INTO `club_table` (`clubID`, `name`, `category`, `bio`, `contact`, `clubP
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event_table`
+--
+
+CREATE TABLE `event_table` (
+  `eventID` int(11) NOT NULL,
+  `clubID` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event_table`
+--
+
+INSERT INTO `event_table` (`eventID`, `clubID`, `title`, `description`, `date`, `time`) VALUES
+(1, 14, 'Biff\'s first event!', 'This is Biff\'s first glorious event', '2022-11-26', '05:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `membership_table`
 --
 
@@ -62,6 +84,26 @@ CREATE TABLE `membership_table` (
 
 INSERT INTO `membership_table` (`userID`, `clubID`, `admin`, `memberID`) VALUES
 (12, 14, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts_table`
+--
+
+CREATE TABLE `posts_table` (
+  `postID` int(11) NOT NULL,
+  `clubID` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts_table`
+--
+
+INSERT INTO `posts_table` (`postID`, `clubID`, `title`, `content`) VALUES
+(1, 14, 'First post!', 'This is Biff\'s Club\'s glorious first post!');
 
 -- --------------------------------------------------------
 
@@ -99,12 +141,26 @@ ALTER TABLE `club_table`
   ADD PRIMARY KEY (`clubID`);
 
 --
+-- Indexes for table `event_table`
+--
+ALTER TABLE `event_table`
+  ADD PRIMARY KEY (`eventID`),
+  ADD KEY `clubEvent_foreignKey` (`clubID`);
+
+--
 -- Indexes for table `membership_table`
 --
 ALTER TABLE `membership_table`
   ADD PRIMARY KEY (`memberID`),
   ADD KEY `userID` (`userID`),
   ADD KEY `clubID` (`clubID`);
+
+--
+-- Indexes for table `posts_table`
+--
+ALTER TABLE `posts_table`
+  ADD PRIMARY KEY (`postID`),
+  ADD KEY `clubPosts_foreignKey` (`clubID`);
 
 --
 -- Indexes for table `user_table`
@@ -123,10 +179,22 @@ ALTER TABLE `club_table`
   MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `event_table`
+--
+ALTER TABLE `event_table`
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `membership_table`
 --
 ALTER TABLE `membership_table`
   MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `posts_table`
+--
+ALTER TABLE `posts_table`
+  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_table`
@@ -139,11 +207,23 @@ ALTER TABLE `user_table`
 --
 
 --
+-- Constraints for table `event_table`
+--
+ALTER TABLE `event_table`
+  ADD CONSTRAINT `clubEvent_foreignKey` FOREIGN KEY (`clubID`) REFERENCES `club_table` (`clubID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `membership_table`
 --
 ALTER TABLE `membership_table`
-  ADD CONSTRAINT `club_foreignkey` FOREIGN KEY (`clubID`) REFERENCES `club_table` (`clubID`),
-  ADD CONSTRAINT `user_foreignkey` FOREIGN KEY (`userID`) REFERENCES `user_table` (`userID`);
+  ADD CONSTRAINT `club_foreignkey` FOREIGN KEY (`clubID`) REFERENCES `club_table` (`clubID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_foreignkey` FOREIGN KEY (`userID`) REFERENCES `user_table` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `posts_table`
+--
+ALTER TABLE `posts_table`
+  ADD CONSTRAINT `clubPosts_foreignKey` FOREIGN KEY (`clubID`) REFERENCES `club_table` (`clubID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
