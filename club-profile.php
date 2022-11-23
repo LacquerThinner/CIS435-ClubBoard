@@ -129,32 +129,33 @@ if (!isset($_SESSION['loggedin'])) {
 <main>
 <?php
 	$club_id = $_GET['id'];
-	
-	$conn = mysqli_connect('localhost', 'root', '');  
-
-		// root is the default username 
-
-		// ' ' is the default password
-
-		if (! $conn) {  
-
-				die("Connection failed" . mysqli_connect_error());  
-
-		}  
-
-		else {  
-
-				// connect to the database named group6_db
-
-				mysqli_select_db($conn, 'group6_db');  
-
-		} 
-		
-		$getQuery = "select * from club_table where clubID = " . $club_id;
-		
-		$result = mysqli_query($conn, $getQuery);
-		
-		$row = mysqli_fetch_array($result);
+	$DATABASE_HOST = 'localhost';
+	$DATABASE_USER = 'root';
+	$DATABASE_PASS = '';
+	$DATABASE_NAME = 'group6_db';
+	$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+	if (mysqli_connect_errno()) {
+		exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+	}
+	//get club's info
+	$stmt = $con->prepare('SELECT name, category, bio, contact, clubPhoto FROM club_table WHERE clubID = ?');
+	$stmt->bind_param('i', $club_id);
+	$stmt->execute();
+	$stmt->bind_result($name, $category, $bio, $contact, $clubPhoto);
+	$stmt->fetch();
+	$stmt->free_result();
+	//get club's posts
+	$stmt = $con->prepare('SELECT * FROM posts_table WHERE clubID = ?');
+	$stmt->bind_param('i', $club_id); 
+	$stmt->execute();
+	$posts = $stmt->get_result();
+	$stmt->free_result();
+	//get club's events
+	$stmt = $con->prepare('SELECT * FROM event_table WHERE clubID = ?');
+	$stmt->bind_param('i', $club_id); 
+	$stmt->execute();
+	$events = $stmt->get_result();
+	$stmt->free_result();
 ?>
 <!-- Page Container -->
 <div class="container" style="max-width:1400px;margin-top:80px">    
@@ -165,12 +166,12 @@ if (!isset($_SESSION['loggedin'])) {
       <!-- Profile -->
       <div class="card">
         <div class="container">
-         <h4 class="center"><?php echo $row['name']; ?></h4>	<!-- Going to add database functions to get user information 
+         <h4 class="center"><?php echo $name; ?></h4>	<!-- Going to add database functions to get user information 
 												 using an ID, and eventually for clubs as well -->
-         <p class="center circle"><img src= <?php echo "images/" . $row['clubPhoto']; ?> style="border-radius:50%; width:25%; height:25%;" alt="Avatar"></p>
+         <p class="center circle"><img src= <?php echo "images/" . $clubPhoto; ?> style="border-radius:50%; width:25%; height:25%;" alt="Avatar"></p>
          <hr>
-         <p><img src="images/pencil.png" style="width:5%; height:5%;" alt="pencil"> <?php echo $row['bio']; ?></p>
-         <p><img src="images/house.png" style="width:5%; height:5%;" alt="house"> <?php echo $row['contact']; ?></p>
+         <p><img src="images/pencil.png" style="width:5%; height:5%;" alt="pencil"> <?php echo $bio; ?></p>
+         <p><img src="images/house.png" style="width:5%; height:5%;" alt="house"> <?php echo $contact; ?></p>
         </div>
       </div>
       <br>
@@ -184,22 +185,29 @@ if (!isset($_SESSION['loggedin'])) {
         <div class="col">
           <div class="card">
             <div class="container">
-              <p contenteditable="true">Post: </p>
+              <p contenteditable="true">Posts: </p>
+			  <?php
+				while ($row = mysqli_fetch_array($posts)) {?> 
+					<div class="container"><br>
+						<h5><?php echo $row['title'];?></h5><br>
+						<hr class="clear">
+						<p><?php echo $row['content'];?></p>
+					</div>
+				<?php } ?>
               <button type="button" class="btn btn-outline-primary"> Tag</button> 
             </div>
           </div>
         </div>
       </div>
       
-      <div class="container"><br>
-        <img src="images/avatar-placeholder.png" alt="Avatar" style="border-radius:50%; width:5%; height:5%;">
-        <h5>Club Name</h5><br>
-        <hr class="clear">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          
-        <button type="button" class="btn btn-light">  Like</button> 
-        <button type="button" class="btn btn-light">  Comment</button> 
-      </div>
+	  <?php
+	  while ($row = mysqli_fetch_array($posts)) {?> 
+		<div class="container"><br>
+			<h5><?php echo $row['title'];?></h5><br>
+			<hr class="clear">
+			<p><?php echo $row['content'];?></p>
+        </div>
+	  <?php } ?>
       
       
     <!-- End Middle Column -->
@@ -209,11 +217,15 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="col">
       <div class="card">
         <div class="container">
-          <p>Upcoming Events:</p>
-		  <img src="images/forest.jpg" alt="Forest" style="width:50%;">
-          <p><strong>Camping</strong></p>
-          <p>Friday, ... 3:00pm</p>
-          <p><button type="button" class="btn btn-info">Info</button></p>
+		  <p>Upcoming Events:</p>
+		  <?php
+			while ($row = mysqli_fetch_array($events)) {?> 
+				<div class="container"><br>
+					<p><strong><?php echo $row['title'];?></strong></p>
+					<p><?php echo $row['description'];?></p>
+					<p><?php echo $row['date'] . ' ' . $row['time'];?></p>
+				</div>
+			<?php } ?>
         </div>
       </div>
       <br>
@@ -221,7 +233,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<!-- Interests --> 
       <div class="card">
         <div class="container">
-          <p><?php echo $row['catagory']; ?></p>
+          <p><?php echo $category; ?></p>
           <p>
             <span class="badge badge-primary">News</span>
             <span class="badge badge-secondary">W3Schools</span>
