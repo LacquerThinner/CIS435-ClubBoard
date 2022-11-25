@@ -63,16 +63,10 @@ if ($stmt = $con->prepare('SELECT clubID FROM club_table WHERE name = ?')) {
 			exit ("Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>");
 		}
 		
-		if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-			;
-		} else {
-			exit('There was a problem uploading the club image');
-		}
-		
-		if ($stmt = $con->prepare('INSERT INTO club_table (name, category, bio, contact, clubPhoto) VALUES (?, ?, ?, ?, ?)')) {
-			$stmt->bind_param('sssss', $_POST['club-name'], $_POST['category'], $_POST['bio'], $_POST['contact'], $_FILES['img']['name']);
+		if ($stmt = $con->prepare('INSERT INTO club_table (name, category, bio, contact) VALUES (?, ?, ?, ?)')) {
+			$stmt->bind_param('ssss', $_POST['club-name'], $_POST['category'], $_POST['bio'], $_POST['contact']);
 			$stmt->execute();
-			echo 'You have successfully registered, you can now login!<br>';
+			$stmt->free_result();
 		} else {
 			// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 			echo 'Could not prepare statement!';
@@ -98,7 +92,23 @@ if ($stmt = $con->prepare('SELECT clubID FROM club_table WHERE name = ?')) {
 			$admin = true;
 			$stmt->bind_param('ssi', $_SESSION['id'], $clubid, $admin);
 			$stmt->execute();
-			echo 'You have been added as an admin to your group!<br><a href="club-profile.php?id='.$clubid.'">Club Profile</a>';
+			$stmt->free_result();
+			
+			$_FILES["img"]["name"] = "clubphoto".$clubid.'.'.$imageFileType;
+			$target_file = $target_dir . basename($_FILES["img"]["name"]);
+			if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
+				;
+			} else {
+				exit('There was a problem uploading the club image');
+			}
+			if ($stmt = $con->prepare('UPDATE club_table SET clubPhoto = ? WHERE clubID = ?')) {
+			$stmt->bind_param('si', $_FILES['img']['name'], $clubid);
+			$stmt->execute();
+			echo 'You have successfully created a new club!<br><a href="club-profile.php?id='.$clubid.'">Club Profile</a>';
+			}
+			else {
+				exit('Image error');
+			}
 		} else {
 			// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 			echo 'Could not prepare statement!';

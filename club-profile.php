@@ -156,6 +156,25 @@ if (!isset($_SESSION['loggedin'])) {
 	$stmt->execute();
 	$events = $stmt->get_result();
 	$stmt->free_result();
+	//get member status
+	$stmt = $con->prepare('SELECT * FROM membership_table WHERE clubID = ? && userID = ?');
+	$stmt->bind_param('ii', $club_id, $_SESSION['id']); 
+	$stmt->execute();
+	$stmt->store_result();
+	if($stmt->num_rows > 0) {
+		$stmt = $con->prepare('SELECT admin FROM membership_table WHERE clubID = ? && userID = ?');
+	    $stmt->bind_param('ii', $club_id, $_SESSION['id']); 
+	    $stmt->execute();
+		$admin = $stmt->get_result();
+		$row = mysqli_fetch_array($admin);
+		$isAdmin = $row['admin'];
+		$isMember = true;
+	}
+	else {
+		$isMember = false;
+		$isAdmin = 0;
+	}
+	
 ?>
 <!-- Page Container -->
 <div class="container" style="max-width:1400px;margin-top:80px">    
@@ -175,7 +194,24 @@ if (!isset($_SESSION['loggedin'])) {
         </div>
       </div>
       <br>
-    
+	  <!-- Interests --> 
+      <div class="card">
+        <div class="container">
+          <p><?php echo $category; ?></p>
+          <p>
+            <span class="badge badge-primary">News</span>
+            <span class="badge badge-secondary">W3Schools</span>
+            <span class="badge badge-success">Bootstrap</span>
+            <span class="badge badge-dark">Games</span>
+          </p>
+        </div>
+      </div>
+      <br>
+<?php
+if (! $isMember) {
+	echo '<a role="button" class="btn btn-light" href="addMember.php?id='.$clubid.'">Join!</a>';
+}
+?>
     <!-- End Left Column -->
     </div>
     
@@ -194,7 +230,11 @@ if (!isset($_SESSION['loggedin'])) {
 						<p><?php echo $row['content'];?></p>
 					</div>
 				<?php } ?>
-              <button type="button" class="btn btn-outline-primary"> Tag</button> 
+                <?php
+					if($isAdmin) {
+						echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$clubid.'">Make a Post</a>';
+					}
+				?>
             </div>
           </div>
         </div>
@@ -208,8 +248,6 @@ if (!isset($_SESSION['loggedin'])) {
 			<p><?php echo $row['content'];?></p>
         </div>
 	  <?php } ?>
-      
-      
     <!-- End Middle Column -->
     </div>
     
@@ -226,20 +264,12 @@ if (!isset($_SESSION['loggedin'])) {
 					<p><?php echo $row['date'] . ' ' . $row['time'];?></p>
 				</div>
 			<?php } ?>
-        </div>
-      </div>
-      <br>
-    
-	<!-- Interests --> 
-      <div class="card">
-        <div class="container">
-          <p><?php echo $category; ?></p>
-          <p>
-            <span class="badge badge-primary">News</span>
-            <span class="badge badge-secondary">W3Schools</span>
-            <span class="badge badge-success">Bootstrap</span>
-            <span class="badge badge-dark">Games</span>
-          </p>
+			
+			<?php
+				if($isAdmin) {
+					echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$clubid.'">Make a Post</a>';
+				}
+			?>	
         </div>
       </div>
       <br>

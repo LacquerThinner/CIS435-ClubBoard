@@ -124,6 +124,14 @@ $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($password, $email, $realname, $userPhoto, $bio);
 $stmt->fetch();
+$stmt->free_result();
+
+$stmt = $con->prepare('SELECT club_table.clubID, club_table.name, club_table.clubPhoto FROM membership_table INNER JOIN club_table WHERE userID = ?');
+// In this case we can use the account ID to get the account info.
+$stmt->bind_param('i', $_SESSION['id']);
+$stmt->execute();
+$clubs = $stmt->get_result();
+$stmt->free_result();
 ?>
 
 <!-- Page Container -->
@@ -141,12 +149,17 @@ $stmt->fetch();
          <p><img src="images/pencil.png" width="5%" height="5%"></img> Job Title, Company / School</p>
          <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $email; ?></p>
          <p><img src="images/cake.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
+		 <a role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
         </div>
       </div>
       <br>
-      
-      <!-- Accordion -->
-      <div class="accordion" id="accordionProfile">
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="col">
+	  <!-- Accordion -->
+	  <div class="accordion" id="accordionProfile">
 		<div class="accordion-item">
 		  <h2 class="accordion-header" id="headingOne">
 			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -155,24 +168,15 @@ $stmt->fetch();
 		  </h2>
 		  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionProfile">
 		  <div class="accordion-body">
-			<?php //Query all clubs to see if this user is in them, need to add some relation
-				//$queryUserGroups = "SELECT * FROM club_table WHERE ";	
-				//$result2 = mysqli_query($conn, $queryUserGroups);
-				//$groups = mysqli_fetch_array($result2);
-			?>
+			<?php
+		    while ($row = mysqli_fetch_array($clubs)) {?> 
+				<a href="club-profile.php?id=<?php echo $row['clubID'] ?>" style="color:black;text-decoration: none;">
+					<div class="grid-item">
+			<p><img src= <?php echo "images/" . $row['clubPhoto']; ?> width="15%" height="15%" alt="Club Photo"> <?php echo $row['name']; ?></p>
+					</div>
+				</a>
+			<?php } ?>
 			  
-		  </div>
-		  </div>
-		</div>
-		<div class="accordion-item">
-		  <h2 class="accordion-header" id="headingTwo">
-			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-			  My Events
-			</button>
-		  </h2>
-		  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionProfile">
-		  <div class="accordion-body">
-
 		  </div>
 		  </div>
 		</div>
@@ -191,23 +195,7 @@ $stmt->fetch();
 		</div>
 		-->
 	  </div>
-    
-    <!-- End Left Column -->
-    </div>
-    
-    <!-- Middle Column -->
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="container">
-              <p contenteditable="true">Post: </p>
-              <button type="button" class="btn btn-outline-primary"> Tag</button> 
-            </div>
-          </div>
-        </div>
-      </div>
-      
+	
       <div class="container"><br>
         <img src=<?php echo "images/" . $userPhoto; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
         <h5><?php echo $realname ?></h5><br>
@@ -216,46 +204,12 @@ $stmt->fetch();
           
         <button type="button" class="btn btn-light">  Like</button> 
         <button type="button" class="btn btn-light">  Comment</button> 
-		<a style="text-align:right" role="button" href="editUser.html">Edit Profile</a>
+		<a style="text-align:right" role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
       </div>
       
       
-    <!-- End Middle Column -->
-    </div>
-    
-    <!-- Right Column -->
-    <div class="col">
-      <div class="card">
-        <div class="container">
-          <p>Upcoming Events:</p>
-		  <img src="images/forest.jpg" alt="Forest" style="width:50%;">
-          <p><strong>Camping</strong></p>
-          <p>Friday, ... 3:00pm</p>
-          <p><button type="button" class="btn btn-info">Info</button></p>
-        </div>
-      </div>
-      <br>
-    
-	<!-- Interests --> 
-      <div class="card">
-        <div class="container">
-          <p>Interests/Tags</p>
-          <p>
-            <!-- going to add an editable portion a user could add their own tags -->
-          </p>
-        </div>
-      </div>
-      <br>
-	
     <!-- End Right Column -->
     </div>
-    
-  <!-- End Grid -->
-  </div>
-  
-<!-- End Page Container -->
-</div>
-<br>
 
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">

@@ -90,5 +90,6 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 			echo "Sorry, there was an error uploading your file.";
 		}
 	}
+	echo '<a href="profile.php">Return to Profile</a>;
 }
 ?>
