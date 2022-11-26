@@ -7,6 +7,12 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
+if (isset($_SESSION['photo'])) {
+	$photo = $_SESSION['photo'];
+}
+else {
+	$photo = 'avatar-placeholder.png';
+}
 ?>
 <html lang="en">
   <head>
@@ -92,7 +98,7 @@ if (!isset($_SESSION['loggedin'])) {
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="clubs.php">Clubs</a>
@@ -103,7 +109,7 @@ if (!isset($_SESSION['loggedin'])) {
         </ul>
       </div>
 	  <a style="text-align:right" role="button" href="logout.php">Log out</a>
-	 <a style="text-align:right" role="button" href="profile.html"><img src="images/avatar-placeholder.png" width="4%" height="4%" style="border-radius:50%"></img></a>
+	 <a style="text-align:right" role="button" href="profile.html"><img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%"></img></a>
     </div>
   </nav>
 </header>
@@ -118,15 +124,15 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email, realname, userPhoto, bio FROM user_table WHERE userID = ?');
+$stmt = $con->prepare('SELECT password, email, realname, bio FROM user_table WHERE userID = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email, $realname, $userPhoto, $bio);
+$stmt->bind_result($password, $email, $realname, $bio);
 $stmt->fetch();
 $stmt->free_result();
 
-$stmt = $con->prepare('SELECT club_table.clubID, club_table.name, club_table.clubPhoto FROM membership_table INNER JOIN club_table WHERE userID = ?');
+$stmt = $con->prepare('SELECT DISTINCT club_table.clubID, club_table.name, club_table.clubPhoto FROM membership_table INNER JOIN club_table ON membership_table.clubID = club_table.clubID WHERE membership_table.userID = ?;');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
@@ -143,12 +149,12 @@ $stmt->free_result();
       <!-- Profile -->
       <div class="card">
         <div class="container">
-         <h4 class="center"><?php echo $realname; ?></h4>
-         <p class="center circle"><img src=<?php echo "images/" . $userPhoto; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
+         <h4 class="center"><?php echo $_SESSION['name']; ?></h4>
+         <p class="center circle"><img src=<?php echo "images/" . $photo; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
          <hr>
-         <p><img src="images/pencil.png" width="5%" height="5%"></img> Job Title, Company / School</p>
+         <p><img src="images/pencil.png" width="5%" height="5%"></img><?php echo $realname; ?></p>
          <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $email; ?></p>
-         <p><img src="images/cake.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
+         <p><img src="images/pencil.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
 		 <a role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
         </div>
       </div>
@@ -197,7 +203,7 @@ $stmt->free_result();
 	  </div>
 	
       <div class="container"><br>
-        <img src=<?php echo "images/" . $userPhoto; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
+        <img src=<?php echo "images/" . $photo; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
         <h5><?php echo $realname ?></h5><br>
         <hr class="clear">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

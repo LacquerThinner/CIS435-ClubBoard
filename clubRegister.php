@@ -105,6 +105,7 @@ if ($stmt = $con->prepare('SELECT clubID FROM club_table WHERE name = ?')) {
 			$stmt->bind_param('si', $_FILES['img']['name'], $clubid);
 			$stmt->execute();
 			echo 'You have successfully created a new club!<br><a href="club-profile.php?id='.$clubid.'">Club Profile</a>';
+			header('Location: club-profile.php?id='.$clubid);
 			}
 			else {
 				exit('Image error');

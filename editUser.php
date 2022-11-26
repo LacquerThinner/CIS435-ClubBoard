@@ -26,7 +26,7 @@ if (isset($_POST['realname']) && !empty($_POST['realname'])) {
 	
 	if ($stmt = $con->prepare('UPDATE user_table SET realname = \''.$_POST['realname'].'\' WHERE userID = '.$_SESSION['id'].';')) {
 		$stmt->execute();
-		echo 'Name change saved!<br><a href="profile.php">Return to Profile</a><br>';
+		echo 'Name change saved!<br>';
 	} else {
 		// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 		echo 'Could not change name.';
@@ -81,7 +81,8 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 			echo "The file ". htmlspecialchars( basename( $_FILES["userphoto"]["name"])). " has been uploaded.";
 			if ($stmt = $con->prepare('UPDATE user_table SET userPhoto = \''.$_FILES["userphoto"]["name"].'\' WHERE userID = '.$_SESSION['id'].';')) {
 			$stmt->execute();
-			echo 'Photo change Saved!<br><a href="profile.php">Return to Profile</a>';
+			echo 'Photo change Saved!<br>';
+			$_SESSION['photo'] = .$_FILES["userphoto"]["name"];
 			} else {
 				// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 				echo 'Could not change profile picture<br>';
@@ -90,6 +91,6 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 			echo "Sorry, there was an error uploading your file.";
 		}
 	}
-	echo '<a href="profile.php">Return to Profile</a>;
+	echo '<a href="profile.php">Return to Profile</a>';
 }
 ?>

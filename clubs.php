@@ -1,6 +1,13 @@
 <!doctype html>
 <?php // We need to use sessions, so you should always start sessions using the below code.
 session_start();
+// Check for the user's profile pictue
+if (isset($_SESSION['photo'])) {
+	$photo = $_SESSION['photo'];
+}
+else {
+	$photo = 'avatar-placeholder.png';
+}
 ?>
 <html lang="en">
   <head>
@@ -175,7 +182,7 @@ session_start();
 ?>	
     
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Wolverines Unite!</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -184,7 +191,7 @@ session_start();
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="clubs.php">Clubs</a>
@@ -194,7 +201,7 @@ session_start();
           </li>
         </ul>
 		
-		<a class="nav-link profile" href="profile.php"><img src="images/avatar-placeholder.png" style="border-radius:50%;height:40px;width:40px;"></a>
+		<a class="nav-link profile" href="profile.php"><img <img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%;height:40px;width:40px;"></a>
       </div>
     </div>
   </nav>

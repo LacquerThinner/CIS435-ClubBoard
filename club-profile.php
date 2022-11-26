@@ -6,6 +6,13 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
+// Check for the user's profile pictue
+if (isset($_SESSION['photo'])) {
+	$photo = $_SESSION['photo'];
+}
+else {
+	$photo = 'avatar-placeholder.png';
+}
 ?>
 <html lang="en">
   <head>
@@ -100,7 +107,7 @@ if (!isset($_SESSION['loggedin'])) {
   </head>
   <body>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Wolverines Unite!</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,7 +116,7 @@ if (!isset($_SESSION['loggedin'])) {
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="clubs.php">Clubs</a>
@@ -119,7 +126,7 @@ if (!isset($_SESSION['loggedin'])) {
           </li>
         </ul>
 		
-		<a class="nav-link profile" href="profile.php"><img src="images/avatar-placeholder.png" style="border-radius:50%;height:40px;width:40px;"></a>
+		<a class="nav-link profile" href="profile.php"><img <img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%;height:40px;width:40px;"></a>
       </div>
     </div>
   </nav>
@@ -209,7 +216,7 @@ if (!isset($_SESSION['loggedin'])) {
       <br>
 <?php
 if (! $isMember) {
-	echo '<a role="button" class="btn btn-light" href="addMember.php?id='.$clubid.'">Join!</a>';
+	echo '<a role="button" class="btn btn-light" href="addMember.php?id='.$club_id.'">Join!</a>';
 }
 ?>
     <!-- End Left Column -->
@@ -232,7 +239,7 @@ if (! $isMember) {
 				<?php } ?>
                 <?php
 					if($isAdmin) {
-						echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$clubid.'">Make a Post</a>';
+						echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$club_id.'">Make a Post</a>';
 					}
 				?>
             </div>
@@ -267,7 +274,7 @@ if (! $isMember) {
 			
 			<?php
 				if($isAdmin) {
-					echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$clubid.'">Make a Post</a>';
+					echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$club_id.'">Make a Post</a>';
 				}
 			?>	
         </div>

@@ -17,7 +17,7 @@ if (!isset($_POST['username'], $_POST['password'])) {
 	exit('Please fill both the username and password field!');
 }
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT userID, password FROM user_table WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT userID, password, userPhoto FROM user_table WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -25,7 +25,7 @@ if ($stmt = $con->prepare('SELECT userID, password FROM user_table WHERE usernam
 	$stmt->store_result();
 	// If the username exiusts
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($id, $password);
+		$stmt->bind_result($id, $password, $photo);
 		$stmt->fetch();
 		// Account exists, now we verify the password.
 		// Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -36,6 +36,9 @@ if ($stmt = $con->prepare('SELECT userID, password FROM user_table WHERE usernam
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['name'] = $_POST['username'];
 			$_SESSION['id'] = $id;
+			if ($photo != "") {
+				$_SESSION['photo'] = $photo;
+			}
 			header('Location: profile.php');
 		} else {
 			echo 'Incorrect password!';
