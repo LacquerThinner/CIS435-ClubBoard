@@ -98,7 +98,7 @@
       }
 	  
 	  .profile {
-		align-items: right;
+		align-items: end;
 	  }
 	  
 	  .search_bar {
@@ -124,7 +124,7 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Wolverines Unite!</a>
+      <a class="navbar-brand">Wolverines Unite!</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -148,25 +148,26 @@
 <main>
 <form action="clubRegister.php" method="post" enctype="multipart/form-data">
 	<div class="login-container">
-		<h1 href="#"><b>Wolverines Unite!</b></h1><br>
+		<h1><b>Wolverines Unite!</b></h1><br>
 		
 		<label for="club-name">
 			<b>Club Name</b>
 		</label>
-		<input type="text" placeholder="Club Name" name="club-name" required>
+		<input type="text" placeholder="Club Name" id = "club-name" name="club-name" required>
 		
 		<label for="bio">
 			<b>Description</b>
 		</label>
-		<input type="text" placeholder="Description" name="bio" required>
+		<input type="text" placeholder="Description" id = "bio" name="bio" required>
 		
 		<label for="category">
 			<b>Category</b>
 		</label> 
 		
-		</br>
+		<br>
 		
 		<select name="category" id="category" required>
+		<option value="">Choose a Catagory</option>
 		<option value="subject">Subject</option>
 		<option value="hobby">Hobby</option>
 		<option value="charity">Charity</option>
@@ -177,7 +178,7 @@
 		<label for="contact">
 			<b>Contact Email</b>
 		</label> 
-		<input type="email" placeholder="Email" name="contact" required>
+		<input type="email" placeholder="Email" id = "contact" name="contact" required>
 		
 		<label for="img">
 			<b>Club Photo</b>
@@ -185,6 +186,8 @@
 		<input type="file" id="img" name="img" accept="image/*">
 		
 		<input type="submit" value="Register Club">
+	</div>
+</form>
 </main>
 
 

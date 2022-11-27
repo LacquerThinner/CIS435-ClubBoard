@@ -228,18 +228,24 @@ if (! $isMember) {
         <div class="col">
           <div class="card">
             <div class="container">
-              <p contenteditable="true">Posts: </p>
+              <h3>Posts: </h3>
 			  <?php
 				while ($row = mysqli_fetch_array($posts)) {?> 
 					<div class="container"><br>
 						<h5><?php echo $row['title'];?></h5><br>
+						<p><?php echo $row['content'];?></p><br>
 						<hr class="clear">
-						<p><?php echo $row['content'];?></p>
 					</div>
 				<?php } ?>
                 <?php
 					if($isAdmin) {
-						echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$club_id.'">Make a Post</a>';
+						echo '<form action="addPost.php?id='.$club_id.'" method="post" autocomplete="off" enctype="multipart/form-data">
+								<input type="text" name="title" placeholder="Title" id="title">
+								<br>
+								<textarea id="content" name="content" placeholder="Content" rows="4" cols="50"></textarea>
+								<br>
+							<input type="submit" value="Post">
+						</form>';
 					}
 				?>
             </div>
@@ -262,7 +268,7 @@ if (! $isMember) {
     <div class="col">
       <div class="card">
         <div class="container">
-		  <p>Upcoming Events:</p>
+		  <h3>Upcoming Events:</h3>
 		  <?php
 			while ($row = mysqli_fetch_array($events)) {?> 
 				<div class="container"><br>
@@ -274,7 +280,16 @@ if (! $isMember) {
 			
 			<?php
 				if($isAdmin) {
-					echo '<a role="button" class="btn btn-light" href="addPost.php?id='.$club_id.'">Make a Post</a>';
+					echo '<form action="addEvent.php?id='.$club_id.'" method="post" autocomplete="off" enctype="multipart/form-data">
+								<input type="text" name="title" placeholder="Title" id="title">
+								<br>
+								<input type="date" name="date" placeholder="Date" id="date">
+								<input type="time" name="time" placeholder="Time" id="time">
+								<br>
+								<textarea id="description" name="description" placeholder="Description" rows="4" cols="50"></textarea>
+								<br>
+							<input type="submit" value="Post">
+						</form>';
 				}
 			?>	
         </div>
