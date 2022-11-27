@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2022 at 08:45 PM
+-- Generation Time: Nov 27, 2022 at 07:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -41,7 +41,9 @@ CREATE TABLE `club_table` (
 --
 
 INSERT INTO `club_table` (`clubID`, `name`, `category`, `bio`, `contact`, `clubPhoto`) VALUES
-(14, 'Biff\'sClub', 'hobby', 'This is Biff\'s great club!', 'BiffsClub@email.com', 'clubphoto12.jpg');
+(14, 'Biff\'sClub', 'hobby', 'This is Biff\'s great club!', 'BiffsClub@email.com', 'clubphoto12.jpg'),
+(25, 'Biff\'s Second Club', 'other', 'This is Biff\'s secondary club', 'Biff\'sClub@email.com', 'clubphoto25.jpg'),
+(26, 'Kyle\'s Test Club', 'charity', 'This is a test For my very good club', 'KylesClub@email.com', 'clubphoto26.png');
 
 -- --------------------------------------------------------
 
@@ -55,7 +57,7 @@ CREATE TABLE `event_table` (
   `title` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL
+  `time` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -63,7 +65,10 @@ CREATE TABLE `event_table` (
 --
 
 INSERT INTO `event_table` (`eventID`, `clubID`, `title`, `description`, `date`, `time`) VALUES
-(1, 14, 'Biff\'s first event!', 'This is Biff\'s first glorious event', '2022-11-26', '05:00:00');
+(1, 14, 'Biff\'s first event!', 'This is Biff\'s first glorious event', '2022-11-26', '05:00:00'),
+(3, 26, 'Second Event', 'This is the second event for my club', '2022-12-01', '20:00:00'),
+(4, 26, 'Third event', 'You know What\'s happenin', '2022-12-08', '09:30'),
+(5, 26, 'Fourth event', 'I sure hope this works', '2022-11-16', '20:36');
 
 -- --------------------------------------------------------
 
@@ -83,7 +88,10 @@ CREATE TABLE `membership_table` (
 --
 
 INSERT INTO `membership_table` (`userID`, `clubID`, `admin`, `memberID`) VALUES
-(12, 14, 1, 3);
+(12, 14, 1, 3),
+(12, 25, 1, 7),
+(13, 14, 0, 9),
+(13, 26, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -103,7 +111,10 @@ CREATE TABLE `posts_table` (
 --
 
 INSERT INTO `posts_table` (`postID`, `clubID`, `title`, `content`) VALUES
-(1, 14, 'First post!', 'This is Biff\'s Club\'s glorious first post!');
+(1, 14, 'First post!', 'This is Biff\'s Club\'s glorious first post!'),
+(11, 26, 'Another post', 'Bleh'),
+(12, 26, 'Test post 1000', 'This is a test post'),
+(13, 26, ' ', ' ');
 
 -- --------------------------------------------------------
 
@@ -118,17 +129,19 @@ CREATE TABLE `user_table` (
   `realname` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `userPhoto` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bio` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `bio` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `siteAdmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user_table`
 --
 
-INSERT INTO `user_table` (`userID`, `username`, `password`, `realname`, `email`, `userPhoto`, `bio`) VALUES
-(10, 'TestUser1', '$2y$10$rCvsg3qS2yUhXjHj/qhcRurZUUkwtI8FZC17vPFONOoLx3wcQ.x1C', '', 'Test@email.com', 'Photo.jpg', 'Test Bio'),
-(11, 'TestUser2', '$2y$10$vsW88N4uAhYcLCshMQdLYOK/.XW4ly1EtTZVTpY0PxO7XPczY9Ch.', '', 'Test@email.com', '', ''),
-(12, 'TestUser5', '$2y$10$XqeaZwoiJug2R1GeL3VEE.u9ADskKOn.tdCFPZJFMLXBSxDm/lsjW', 'Biff Steel', 'test@emaicl.com', 'userphoto12.png', '');
+INSERT INTO `user_table` (`userID`, `username`, `password`, `realname`, `email`, `userPhoto`, `bio`, `siteAdmin`) VALUES
+(10, 'TestUser1', '$2y$10$rCvsg3qS2yUhXjHj/qhcRurZUUkwtI8FZC17vPFONOoLx3wcQ.x1C', '', 'Test@email.com', 'Photo.jpg', 'Test Bio', 0),
+(11, 'TestUser2', '$2y$10$vsW88N4uAhYcLCshMQdLYOK/.XW4ly1EtTZVTpY0PxO7XPczY9Ch.', '', 'Test@email.com', '', '', 0),
+(12, 'TestUser5', '$2y$10$XqeaZwoiJug2R1GeL3VEE.u9ADskKOn.tdCFPZJFMLXBSxDm/lsjW', 'Biff Steel', 'test@emaicl.com', 'userphoto12.png', 'This is Biff\'s glorious bio', 0),
+(13, 'KDriver', '$2y$10$rD7HeVOZpZ/k9qJztSfG1uk1kk5cK45LRGuB78rDPRLxg5pUp0JXG', 'Kyle Driver', 'kdriver@umich.edu', 'userphoto13.png', 'This is My Bio', 0);
 
 --
 -- Indexes for dumped tables
@@ -176,31 +189,31 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `club_table`
 --
 ALTER TABLE `club_table`
-  MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `event_table`
 --
 ALTER TABLE `event_table`
-  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `membership_table`
 --
 ALTER TABLE `membership_table`
-  MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `posts_table`
 --
 ALTER TABLE `posts_table`
-  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
