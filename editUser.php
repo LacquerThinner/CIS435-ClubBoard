@@ -82,7 +82,7 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 			if ($stmt = $con->prepare('UPDATE user_table SET userPhoto = \''.$_FILES["userphoto"]["name"].'\' WHERE userID = '.$_SESSION['id'].';')) {
 			$stmt->execute();
 			echo 'Photo change Saved!<br>';
-			$_SESSION['photo'] = .$_FILES["userphoto"]["name"];
+			$_SESSION['photo'] = $_FILES["userphoto"]["name"];
 			} else {
 				// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 				echo 'Could not change profile picture<br>';
