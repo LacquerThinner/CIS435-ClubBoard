@@ -24,7 +24,7 @@ if ($stmt = $con->prepare('INSERT INTO membership_table (userID, clubID, admin) 
 	$stmt->bind_param('ssi', $_SESSION['id'], $club_id, $admin);
 	$stmt->execute();
 	$stmt->free_result();
-	header('Location: club-profile.php?id='.$club_id);
+	header('Location: club-profile-'.$club_id);
 }
 
 ?>

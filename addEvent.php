@@ -63,5 +63,5 @@ if ($stmt = $con->prepare('INSERT INTO event_table (clubID, title, description, 
 			// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 			echo 'Could not prepare statement!';
 		}
-header('Location: club-profile.php?id='.$club_id);
+header('Location: club-profile-'.$club_id);
 ?>

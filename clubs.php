@@ -187,7 +187,7 @@ if (isset($_SESSION['loggedin'])) {
 		<div class="grid-container">
 		<?php
 		    while ($row = mysqli_fetch_array($result)) {?> 
-				<a href="<?php echo 'club-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
+				<a href="<?php echo 'club-profile-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
 					<div class="grid-item">
 			<img src= <?php echo "images/" . $row['clubPhoto']; ?> alt="Club Photo">
 						<h2><?php echo $row['name']; ?></h2>

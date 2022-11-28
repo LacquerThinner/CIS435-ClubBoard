@@ -103,7 +103,7 @@
             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="clubs.php">Clubs</a>
+            <a class="nav-link" href="clubs-1">Clubs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="survey.html">Survey</a>
