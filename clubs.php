@@ -18,9 +18,9 @@ else {
     <meta name="generator" content="Hugo 0.101.0">
     <title>Wolverines Unite!</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/?">
 
-<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/dist/css/bootstrap.min.css?v=1" rel="stylesheet">
 
     <style>
 		body, html {
@@ -145,13 +145,13 @@ else {
 
 		} 
 	
-		if (!isset ($_GET['page']) ) {  
+		if (!isset ($params['page']) ) {  
 
 			$page_number = 1;  
 
 		} else {  
 
-			$page_number = $_GET['page'];  
+			$page_number = $params['page'];  
 
 		}  
 
@@ -223,7 +223,7 @@ if (isset($_SESSION['loggedin'])) {
 		<div class="grid-container">
 		<?php
 		    while ($row = mysqli_fetch_array($result)) {?> 
-				<a href="club-profile.php?id=<?php echo $row['clubID'] ?>" style="color:black;text-decoration: none;">
+				<a href="<?php echo 'club-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
 					<div class="grid-item">
 			<img src= <?php echo "images/" . $row['clubPhoto']; ?> alt="Club Photo">
 						<h2><?php echo $row['name']; ?></h2>
@@ -235,7 +235,7 @@ if (isset($_SESSION['loggedin'])) {
 			<p><?php
 			for($page_number = 1; $page_number<= $total_pages; $page_number++) {  
 
-				echo '<a href = "clubs.php?page=' . $page_number . '">' . $page_number . ' </a>';  
+				echo '<a href = "/ClubBoard/clubs-' . $page_number . '">' . $page_number . ' </a>';  
 
 			}  
 			?></p>

@@ -135,7 +135,7 @@ else {
 
 <main>
 <?php
-	$club_id = $_GET['id'];
+	$club_id = $params['id'];
 	$DATABASE_HOST = 'localhost';
 	$DATABASE_USER = 'root';
 	$DATABASE_PASS = '';
@@ -218,6 +218,10 @@ else {
 if (! $isMember) {
 	echo '<a role="button" class="btn btn-light" href="addMember.php?id='.$club_id.'">Join!</a>';
 }
+if ($_SESSION['admin']) {
+	echo '<a role="button" class="btn btn-light" href="deleteClub.php?id='.$club_id.'">Delete this club</a>';
+}
+
 ?>
     <!-- End Left Column -->
     </div>
