@@ -15,71 +15,6 @@ else {
 }
 ?>
 <html lang="en">
-  <style>
-	button {
-	  background-color: silver;
-	  color: black;
-	  padding: 14px 20px;
-	  margin: 8px 0;
-	  border-color: black;
-	  border-style: solid;
-	  cursor: pointer;
-	  width: 100%;
-	}
-		
-		body, html {
-			width: 100%;
-			height: 100%;
-			margin: 0;
-		}
-		
-		.container {
-			width: 100%;
-			height: 100%;
-		}
-		
-		.leftpane {
-			margin-top: 10px;
-			width: 20%;
-			height: 100%;
-			float: left;
-			background-color: rosybrown;
-			border-collapse: collapse;
-		}
-
-		.middlepane {
-			margin-top: 10px;
-			width: 80%;
-			height: 100%;
-			float: left;
-			background-color: royalblue;
-			border-collapse: collapse;
-		}
-	
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
 	
  <?php
   include('header.php');
@@ -158,7 +93,7 @@ $stmt->free_result();
 		    while ($row = mysqli_fetch_array($clubs)) {?> 
 				<a href="<?php echo 'club-profile-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
 					<div class="grid-item">
-			<p><img src= <?php echo "images/" . $row['clubPhoto']; ?> width="15%" height="15%" alt="Club Photo"> <?php echo $row['name']; ?></p>
+			<p><img src= <?php echo "images/" . $row['clubPhoto']; ?> style="height:15%;width:15%;" alt="Club Photo"> <?php echo $row['name']; ?></p>
 					</div>
 				</a>
 			<?php } ?>

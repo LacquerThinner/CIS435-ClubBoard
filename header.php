@@ -82,7 +82,53 @@
         padding-bottom: 1rem;
         margin-top: -1px;
 		}
+	
+		button {
+	  background-color: silver;
+	  color: black;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border-color: black;
+	  border-style: solid;
+	  cursor: pointer;
+	  width: 100%;
+	}
+	
+	body, html {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
 		
+	.container {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.leftpane {
+			margin-top: 10px;
+			width: 20%;
+			height: 100%;
+			float: left;
+			background-color: rosybrown;
+			border-collapse: collapse;
+		}
+
+		.middlepane {
+			margin-top: 10px;
+			width: 80%;
+			height: 100%;
+			float: left;
+			background-color: royalblue;
+			border-collapse: collapse;
+		}
+	
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+	  
 	#searchBarWrap{
 		display: flex;
 		justify-content: center;
