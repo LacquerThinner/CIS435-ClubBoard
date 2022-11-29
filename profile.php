@@ -115,7 +115,7 @@ $stmt->free_result();
       <div class="card">
         <div class="container">
          <h4 class="center"><?php echo $_SESSION['name']; ?></h4>
-         <p class="center circle"><img src=<?php echo "userImages/" . $photo; ?> style="border-radius:50%;height:5%;width:5%;" alt="Avatar"></p>
+         <p class="center circle"><img src=<?php echo "userImages/" . $photo; ?> style="border-radius:50%;height:25%;width:25%;" alt="Avatar"></p>
          <hr>
 		 <?php 
 		 if ($realname != Null) {

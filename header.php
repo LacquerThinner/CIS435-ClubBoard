@@ -72,7 +72,7 @@
       }
 	  
 	  .profile {
-		align-items: end;
+		float: right;
 	  }
 	  
 	  .search_bar {
