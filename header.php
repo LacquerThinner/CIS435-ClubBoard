@@ -15,6 +15,11 @@
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+	  .center {
+		  display: flex;
+		  justify-content: center;
+	  }
+	
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -67,7 +72,7 @@
       }
 	  
 	  .profile {
-		align-items: right;
+		align-items: end;
 	  }
 	  
 	  .search_bar {
@@ -107,7 +112,7 @@
           </li>
         </ul>
 		
-		<a class="nav-link profile" href="profile.php"><img <img src=<?php echo "userImages/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%;height:40px;width:40px;"></a>
+		<a class="nav-link profile" href="profile.php"><img src=<?php echo "userImages/" . $photo; ?>  style="border-radius:50%;height:8%;width:8%;"></a>
       </div>
     </div>
   </nav>

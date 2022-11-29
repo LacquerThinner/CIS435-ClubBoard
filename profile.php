@@ -15,11 +15,7 @@ else {
 }
 ?>
 <html lang="en">
- <?php
-  include('header.php');
-  ?>
-	
-    <style>
+  <style>
 	button {
 	  background-color: silver;
 	  color: black;
@@ -85,8 +81,12 @@ else {
       }
     </style>
 	
-	<!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
+ <?php
+  include('header.php');
+  ?>
+	
+<!-- Custom styles for this template -->
+<link href="carousel.css" rel="stylesheet">
 
 <?php
 //connect to the database
@@ -115,23 +115,23 @@ $stmt->free_result();
       <div class="card">
         <div class="container">
          <h4 class="center"><?php echo $_SESSION['name']; ?></h4>
-         <p class="center circle"><img src=<?php echo "userImages/" . $photo; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
+         <p class="center circle"><img src=<?php echo "userImages/" . $photo; ?> style="border-radius:50%;height:5%;width:5%;" alt="Avatar"></p>
          <hr>
 		 <?php 
 		 if ($realname != Null) {
-			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>' . $realname . '</p>';
+			echo '<p><img src="images/name.png" style="height:5%;width:5%;" alt="Name">' . $realname . '</p>';
 		 } else {
-			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>Your Name</p>';
+			echo '<p><img src="images/name.png" style="height:5%;width:5%;" alt="Name">Your Name</p>';
 		 }
 		 if ($bio != Null) {
-			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>' . $bio . '</p>';
+			echo '<p><img src="images/pencil.png" style="height:5%;width:5%;" alt="Pencil">' . $bio . '</p>';
 		 } else {
-			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>Bio</p>';
+			echo '<p><img src="images/pencil.png" style="height:5%;width:5%;" alt="Pencil">Bio</p>';
 		 }
 		 if ($email != Null) {
-			echo '<p><img src="images/house.png" width="5%" height="5%"></img>' . $email . '</p>';
+			echo '<p><img src="images/envelope.png" style="height:5%;width:5%;" alt="Envelope">' . $email . '</p>';
 		 } else {
-			echo '<p><img src="images/house.png" width="5%" height="5%"></img>E-Mail</p>';
+			echo '<p><img src="images/envelope.png" style="height:5%;width:5%;" alt="Envelope">E-Mail</p>';
 		 }
 		 ?>
 		 <a role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
