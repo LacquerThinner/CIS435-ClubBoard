@@ -112,7 +112,7 @@
           </li>
         </ul>
 		
-		<a class="nav-link profile" href="profile.php"><img src=<?php echo "userImages/" . $photo; ?>  style="border-radius:50%;height:8%;width:8%;"></a>
+		<a class="nav-link profile" href="profile.php"><img src=<?php echo "userImages/" . $photo; ?>  style="border-radius:50%;height:40px;width:40px;"></a>
       </div>
     </div>
   </nav>
