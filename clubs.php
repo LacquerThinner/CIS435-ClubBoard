@@ -113,7 +113,7 @@ else {
 
   
   <?php
-	$conn = mysqli_connect('localhost', 'root', '');  
+	$conn = mysqli_connect('141.215.80.154', 'group6', 'DDFLa@mq7SR');  
 
 		// root is the default username 
 

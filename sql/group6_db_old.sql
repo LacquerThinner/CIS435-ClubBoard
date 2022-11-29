@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 05:56 PM
+-- Generation Time: Nov 27, 2022 at 07:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -43,10 +43,7 @@ CREATE TABLE `club_table` (
 INSERT INTO `club_table` (`clubID`, `name`, `category`, `bio`, `contact`, `clubPhoto`) VALUES
 (14, 'Biff\'sClub', 'hobby', 'This is Biff\'s great club!', 'BiffsClub@email.com', 'clubphoto12.jpg'),
 (25, 'Biff\'s Second Club', 'other', 'This is Biff\'s secondary club', 'Biff\'sClub@email.com', 'clubphoto25.jpg'),
-(26, 'Kyle\'s Test Club', 'charity', 'This is a test For my very good club', 'KylesClub@email.com', 'clubphoto26.png'),
-(27, 'Test Club 6', 'subject', 'This is a test For my very good club', 'Email@email.com', 'clubphoto27.gif'),
-(28, 'Test Club 7', 'hobby', 'This is Biff\'s great club!', 'Email@email.com', 'clubphoto28.jpg'),
-(29, 'Test Club 8', 'hobby', 'Description', 'Email@email.com', 'clubphoto29.gif');
+(26, 'Kyle\'s Test Club', 'charity', 'This is a test For my very good club', 'KylesClub@email.com', 'clubphoto26.png');
 
 -- --------------------------------------------------------
 
@@ -94,10 +91,7 @@ INSERT INTO `membership_table` (`userID`, `clubID`, `admin`, `memberID`) VALUES
 (12, 14, 1, 3),
 (12, 25, 1, 7),
 (13, 14, 0, 9),
-(13, 26, 1, 10),
-(13, 27, 1, 11),
-(13, 28, 1, 12),
-(13, 29, 1, 13);
+(13, 26, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -118,9 +112,9 @@ CREATE TABLE `posts_table` (
 
 INSERT INTO `posts_table` (`postID`, `clubID`, `title`, `content`) VALUES
 (1, 14, 'First post!', 'This is Biff\'s Club\'s glorious first post!'),
+(11, 26, 'Another post', 'Bleh'),
 (12, 26, 'Test post 1000', 'This is a test post'),
-(13, 26, ' ', ' '),
-(14, 26, 'Test Post 2', '10000000');
+(13, 26, ' ', ' ');
 
 -- --------------------------------------------------------
 
@@ -147,7 +141,7 @@ INSERT INTO `user_table` (`userID`, `username`, `password`, `realname`, `email`,
 (10, 'TestUser1', '$2y$10$rCvsg3qS2yUhXjHj/qhcRurZUUkwtI8FZC17vPFONOoLx3wcQ.x1C', '', 'Test@email.com', 'Photo.jpg', 'Test Bio', 0),
 (11, 'TestUser2', '$2y$10$vsW88N4uAhYcLCshMQdLYOK/.XW4ly1EtTZVTpY0PxO7XPczY9Ch.', '', 'Test@email.com', '', '', 0),
 (12, 'TestUser5', '$2y$10$XqeaZwoiJug2R1GeL3VEE.u9ADskKOn.tdCFPZJFMLXBSxDm/lsjW', 'Biff Steel', 'test@emaicl.com', 'userphoto12.png', 'This is Biff\'s glorious bio', 0),
-(13, 'KDriver', '$2y$10$rD7HeVOZpZ/k9qJztSfG1uk1kk5cK45LRGuB78rDPRLxg5pUp0JXG', 'Kyle Driver', 'kdriver@umich.edu', 'userphoto13.png', 'This is My Bio', 1);
+(13, 'KDriver', '$2y$10$rD7HeVOZpZ/k9qJztSfG1uk1kk5cK45LRGuB78rDPRLxg5pUp0JXG', 'Kyle Driver', 'kdriver@umich.edu', 'userphoto13.png', 'This is My Bio', 0);
 
 --
 -- Indexes for dumped tables
@@ -195,7 +189,7 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `club_table`
 --
 ALTER TABLE `club_table`
-  MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `clubID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `event_table`
@@ -207,13 +201,13 @@ ALTER TABLE `event_table`
 -- AUTO_INCREMENT for table `membership_table`
 --
 ALTER TABLE `membership_table`
-  MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `memberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `posts_table`
 --
 ALTER TABLE `posts_table`
-  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_table`
