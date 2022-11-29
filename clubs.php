@@ -199,7 +199,7 @@ if (isset($_SESSION['loggedin'])) {
 			<p><?php
 			for($page_number = 1; $page_number<= $total_pages; $page_number++) {  
 
-				echo '<a href = "/ClubBoard/clubs-' . $page_number . '">' . $page_number . ' </a>';  
+				echo '<a href = "clubs-' . $page_number . '">' . $page_number . ' </a>';  
 
 			}  
 			?></p>
