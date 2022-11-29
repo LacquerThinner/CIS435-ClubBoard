@@ -180,7 +180,6 @@ else {
 		
 		    while ($row = mysqli_fetch_array($result)) {
 				if ($row_count > 2){
-					echo $row_count;
 					$row_count = 0;
 				?>
 				</div>
@@ -205,14 +204,14 @@ else {
 					</div>
 				</a>-->
 			<?php } ?>
-			<p><?php
+		</div>
+		<p><?php
 			for($page_number = 1; $page_number<= $total_pages; $page_number++) {  
 
 				echo '<a href = "clubs-' . $page_number . '">' . $page_number . ' </a>';  
 
 			}  
 			?></p>
-		</div>
 	</div>
   </body>
 </html>
