@@ -29,6 +29,17 @@ else {
 	<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	
     <style>
+	button {
+	  background-color: silver;
+	  color: black;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border-color: black;
+	  border-style: solid;
+	  cursor: pointer;
+	  width: 100%;
+	}
+		
 		body, html {
 			width: 100%;
 			height: 100%;
@@ -108,17 +119,20 @@ else {
           </li>
         </ul>
       </div>
-	  <a style="text-align:right" role="button" href="logout.php">Log out</a>
 	 <a style="text-align:right" role="button" href="profile.html"><img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%"></img></a>
     </div>
   </nav>
 </header>
 
 <?php
-
-//connect to the database
-include('sql/sqlCredentials.php');
-
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'group6_db';
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if (mysqli_connect_errno()) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
 $stmt = $con->prepare('SELECT password, email, realname, bio FROM user_table WHERE userID = ?');
 // In this case we can use the account ID to get the account info.
@@ -152,6 +166,7 @@ $stmt->free_result();
          <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $email; ?></p>
          <p><img src="images/pencil.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
 		 <a role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
+		 <a role="button" class="btn btn-light" href="logout.php">Log Out</a>
         </div>
       </div>
       <br>
@@ -196,7 +211,8 @@ $stmt->free_result();
 		  </div>
 		</div>
 		-->
-	  </div>  
+	  </div>
+      
     <!-- End Right Column -->
     </div>
 
