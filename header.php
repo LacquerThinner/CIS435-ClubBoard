@@ -105,9 +105,6 @@
           <li class="nav-item">
             <a class="nav-link" href="clubs-1">Clubs</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="survey.html">Survey</a>
-          </li>
         </ul>
 		
 		<a class="nav-link profile" href="profile.php"><img <img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%;height:40px;width:40px;"></a>
