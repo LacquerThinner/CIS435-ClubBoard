@@ -69,7 +69,7 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 		// if everything is ok, try to upload file
 	} else {
 		if (move_uploaded_file($_FILES["userphoto"]["tmp_name"], $target_file)) {
-			echo "The file ". htmlspecialchars( basename( $_FILES["userphoto"]["name"])). " has been uploaded.";
+			echo "The file ". htmlspecialchars( basename( $_FILES["userphoto"]["name"])). " has been uploaded.<br>";
 			if ($stmt = $con->prepare('UPDATE user_table SET userPhoto = \''.$_FILES["userphoto"]["name"].'\' WHERE userID = '.$_SESSION['id'].';')) {
 			$stmt->execute();
 			echo 'Photo change Saved!<br>';
@@ -82,6 +82,6 @@ if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
 			echo "Sorry, there was an error uploading your file.";
 		}
 	}
-	echo '<a href="profile.php">Return to Profile</a>';
+	header('Location: profile.php');
 }
 ?>

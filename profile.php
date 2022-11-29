@@ -117,9 +117,23 @@ $stmt->free_result();
          <h4 class="center"><?php echo $_SESSION['name']; ?></h4>
          <p class="center circle"><img src=<?php echo "images/" . $photo; ?> width="25%" height="25%" style="border-radius:50%" alt="Avatar"></p>
          <hr>
-         <p><img src="images/pencil.png" width="5%" height="5%"></img><?php echo $realname; ?></p>
-         <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $email; ?></p>
-         <p><img src="images/pencil.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
+		 <?php 
+		 if ($realname != Null) {
+			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>' . $realname . '</p>';
+		 } else {
+			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>Your Name</p>';
+		 }
+		 if ($bio != Null) {
+			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>' . $bio . '</p>';
+		 } else {
+			echo '<p><img src="images/pencil.png" width="5%" height="5%"></img>Bio</p>';
+		 }
+		 if ($email != Null) {
+			echo '<p><img src="images/house.png" width="5%" height="5%"></img>' . $email . '</p>';
+		 } else {
+			echo '<p><img src="images/house.png" width="5%" height="5%"></img>E-Mail</p>';
+		 }
+		 ?>
 		 <a role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
 		 <a role="button" class="btn btn-light" href="logout.php">Log Out</a>
         </div>
