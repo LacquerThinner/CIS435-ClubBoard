@@ -19,11 +19,6 @@ else {
 <main>
 
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
 		<img src="images/Photo.jpg" style="width:100%; height:100%;" alt="Photo">
@@ -37,44 +32,7 @@ else {
           </div>
         </div>
       </div>
-      <div class="carousel-item">
-        <img src="images/Canoe.jpg" style="width:100%; height:100%;" alt="Photo">
-
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Announcement 2</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="images/Studying.jpg" style="width:100%; height:100%;" alt="Photo">
-
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>Announcement 3</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
-	<h3 style="text-align:center">Search for Organizations</h3>
-  <div id="searchBarWrap">
-    <form class="search_bar">
-	  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	  <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
   </div>
   <!-- Marketing messaging and featurettes
   ================================================== -->
@@ -83,7 +41,7 @@ else {
   <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
-    <div class="row">
+    <div class="row" style="padding-top: 20px">
       <div class="col-lg-4">
         <img src="images/SoccerLogo.png" width="140" height="140" alt="circle" style="border-radius:50%">
 
@@ -106,7 +64,10 @@ else {
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
-
+	
+	<div class="center">
+		<a role="button" class="btn btn-lg btn-primary" href="clubs.php">View More Clubs</a>
+	</div>
 
     <!-- START THE FEATURETTES -->
 <!--
