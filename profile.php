@@ -75,7 +75,6 @@ $stmt->free_result();
       </div>
     </div>
    </div>
- </div>  
     <br>
     <!-- End Left Column -->
 	
@@ -104,9 +103,10 @@ $stmt->free_result();
 		  </div>
 		</div>
 	  </div>
-      
-    <!-- End Right Column -->
     </div>
+    <!-- End Right Column -->
+	
+ </div>  
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
   <h5>Footer</h5>
