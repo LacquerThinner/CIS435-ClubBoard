@@ -27,7 +27,7 @@ if ($stmt = $con->prepare('SELECT userID, password, userPhoto, siteAdmin FROM us
 			$_SESSION['name'] = $_POST['username'];
 			$_SESSION['id'] = $id;
 			$_SESSION['admin'] = $admin;
-			if ($photo != "") {
+			if ($photo != Null) {
 				$_SESSION['photo'] = $photo;
 			}
 			header('Location: profile.php');
