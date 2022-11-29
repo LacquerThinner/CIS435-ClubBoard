@@ -76,7 +76,8 @@ $stmt->free_result();
       <br>
     <!-- End Left Column -->
     </div>
-    
+   </div>
+ </div>  
     <!-- Middle Column -->
     <div class="col">
 	  <!-- Accordion -->
@@ -101,25 +102,10 @@ $stmt->free_result();
 		  </div>
 		  </div>
 		</div>
-		<!-- Optional photos portion of accordion for user personalization
-		<div class="accordion-item">
-		  <h2 class="accordion-header" id="headingThree">
-			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-			  My Photos
-			</button>
-		  </h2>
-		  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-		  <div class="accordion-body">
-			
-		  </div>
-		  </div>
-		</div>
-		-->
 	  </div>
       
     <!-- End Right Column -->
     </div>
-
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
   <h5>Footer</h5>
