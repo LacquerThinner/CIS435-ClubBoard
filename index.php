@@ -22,14 +22,25 @@ else {
     <div class="carousel-inner">
       <div class="carousel-item active">
 		<img src="images/Photo.jpg" style="width:100%; height:100%;" alt="Photo">
-        <!--< class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
--->
         <div class="container">
-          <div class="carousel-caption text-start">
+	 <?php  if (!isset($_SESSION['loggedin'])) {
+			echo '<div class="carousel-caption text-start">
+            <h1>Want to join a club?</h1>
+            <p>Sign up to access our vast catalog of clubs!</p>
+            <p><a class="btn btn-lg btn-primary" href="register.html">Sign up today</a></p>';
+			}	
+			
+			else {
+				echo '<div class="carousel-caption text-start">
+				<h1>Have a club idea?</h1>
+				<p>Go to our club creation page and become an owner of a club!</p>
+				<p><a class="btn btn-lg btn-primary" href="club_registration.html">Register a Club</a></p>';
+			}?>
+          <!--<div class="carousel-caption text-start">
             <h1>Want to join a club?</h1>
             <p>Sign up to access our vast catalog of clubs!</p>
             <p><a class="btn btn-lg btn-primary" href="register.html">Sign up today</a></p>
-          </div>
+          </div>-->
         </div>
       </div>
   </div>

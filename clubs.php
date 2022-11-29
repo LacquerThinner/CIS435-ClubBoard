@@ -173,19 +173,6 @@ else {
     $result = mysqli_query($conn, $getQuery);   
 ?>	
     
-
-
-<?php
-if (isset($_SESSION['loggedin'])) {
-	echo '<div class="container">
-	<div class="leftpane">
-		<h2>Have a club idea?</h2> 
-		<p>Register a club with us!</p>
-		<form action="club_registration.html">
-			<input type="submit" value="Register a Club!"/>
-		</form>';
-}
-?>
 	</div>
 	<div class="middlepane">
 		<div class="grid-container">
