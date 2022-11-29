@@ -39,7 +39,7 @@ else {
 
 		.middlepane {
 			margin-top: 10px;
-			width: 70%;
+			width: 100%;
 			height: 100%;
 			float: left;
 			border-collapse: collapse;
@@ -60,9 +60,12 @@ else {
 		}
 		
 		.grid-container {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 1rem;
+			width: 100%; /* Try setting this to 400px or something */
+			display: table;
+		}
+		
+		.child {
+			display: table-cell;
 		}
 		
 		.grid-item {
@@ -113,6 +116,7 @@ else {
 
   
   <?php
+	//$conn = mysqli_connect('localhost', 'root', '');
 	$conn = mysqli_connect('141.215.80.154', 'group6', 'DDFLa@mq7SR');  
 
 		// root is the default username 
@@ -145,7 +149,7 @@ else {
 
 	// variable to store the number of rows per page
 
-	$limit = 5;  
+	$limit = 15;  
 
 		// get the initial page number
 
@@ -186,16 +190,35 @@ if (isset($_SESSION['loggedin'])) {
 	<div class="middlepane">
 		<div class="grid-container">
 		<?php
-		    while ($row = mysqli_fetch_array($result)) {?> 
-				<a href="<?php echo 'club-profile-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
+			$row_count = 0;
+		
+		    while ($row = mysqli_fetch_array($result)) {
+				if ($row_count > 2){
+					echo $row_count;
+					$row_count = 0;
+				?>
+				</div>
+				<div class="grid-container">
+				<?php
+				}
+				
+				$row_count += 1;
+				?>
+					<div class="col-lg-4 child">
+						<img src=<?php echo "images/" . $row['clubPhoto']; ?> width="140" height="140" alt="Club Photo" style="border-radius:50%">
+
+						<h2 class="fw-normal"><?php echo $row['name']; ?></h2>
+						<p><a class="btn btn-secondary" href="<?php echo 'club-profile-' . $row['clubID'] ?>">View details &raquo;</a></p>
+					</div><!-- /.col-lg-4 -->
+
+				<!--<a href="<?php echo 'club-profile-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
 					<div class="grid-item">
 			<img src= <?php echo "images/" . $row['clubPhoto']; ?> alt="Club Photo">
 						<h2><?php echo $row['name']; ?></h2>
 						<p><?php echo $row['bio']; ?></p>
 					</div>
-				</a>
+				</a>-->
 			<?php } ?>
-			
 			<p><?php
 			for($page_number = 1; $page_number<= $total_pages; $page_number++) {  
 
