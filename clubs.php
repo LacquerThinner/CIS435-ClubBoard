@@ -173,7 +173,6 @@ else {
     $result = mysqli_query($conn, $getQuery);   
 ?>	
     
-	</div>
 	<div class="middlepane">
 		<div class="grid-container">
 		<?php
@@ -215,7 +214,5 @@ else {
 			?></p>
 		</div>
 	</div>
-</div>
-</main>
   </body>
 </html>
