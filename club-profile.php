@@ -189,7 +189,7 @@ if ($_SESSION['admin']) {
   
 <!-- End Page Container -->
 </div>
-
+</main>
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
