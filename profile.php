@@ -73,11 +73,12 @@ $stmt->free_result();
 		 <a role="button" class="btn btn-light" href="logout.php">Log Out</a>
         </div>
       </div>
-      <br>
-    <!-- End Left Column -->
     </div>
    </div>
  </div>  
+    <br>
+    <!-- End Left Column -->
+	
     <!-- Middle Column -->
     <div class="col">
 	  <!-- Accordion -->
