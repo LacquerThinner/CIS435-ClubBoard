@@ -6,17 +6,8 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
-// Change this to your connection info.
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'group6_db';
-// Try and connect using the info above.
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-	// If there is an error with the connection, stop the script and display the error.
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+//connect to the database
+include('sql/sqlCredentials.php');
 // Now we check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['club-name'], $_POST['bio'], $_POST['category'], $_POST['contact'], $_FILES['img']['name'])) {
 	// Could not get the data that should have been sent.

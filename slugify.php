@@ -1,9 +1,7 @@
 <?php
 $rules = array( 
     'clubs'   => "/clubs-(?'page'\d+)",    // '/clubs.php-clubID'
-    'album'     => "/album/(?'album'[\w\-]+)",              // '/album/album-slug'
     'club-profile'  => "/club-profile-(?'id'\d+)",        // '/category/category-slug'
-    'page'      => "/page/(?'page'about|contact)",          // '/page/about', '/page/contact'
     'home'      => "/"                                      // '/'
 );
 

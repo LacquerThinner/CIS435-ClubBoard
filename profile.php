@@ -116,6 +116,7 @@ else {
 
 <?php
 
+//connect to the database
 include('sql/sqlCredentials.php');
 
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.

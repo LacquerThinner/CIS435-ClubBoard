@@ -23,14 +23,8 @@ else {
 <main>
 <?php
 	$club_id = $params['id'];
-	$DATABASE_HOST = 'localhost';
-	$DATABASE_USER = 'root';
-	$DATABASE_PASS = '';
-	$DATABASE_NAME = 'group6_db';
-	$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-	if (mysqli_connect_errno()) {
-		exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-	}
+	//connect to the database
+    include('sql/sqlCredentials.php');
 	//get club's info
 	$stmt = $con->prepare('SELECT name, category, bio, contact, clubPhoto FROM club_table WHERE clubID = ?');
 	$stmt->bind_param('i', $club_id);
