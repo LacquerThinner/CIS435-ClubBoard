@@ -176,7 +176,7 @@ $stmt->free_result();
 		  <div class="accordion-body">
 			<?php
 		    while ($row = mysqli_fetch_array($clubs)) {?> 
-				<a href="club-profile.php?id=<?php echo $row['clubID'] ?>" style="color:black;text-decoration: none;">
+				<a href="<?php echo 'club-profile-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
 					<div class="grid-item">
 			<p><img src= <?php echo "images/" . $row['clubPhoto']; ?> width="15%" height="15%" alt="Club Photo"> <?php echo $row['name']; ?></p>
 					</div>
