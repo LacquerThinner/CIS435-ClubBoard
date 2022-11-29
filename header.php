@@ -107,7 +107,7 @@
           </li>
         </ul>
 		
-		<a class="nav-link profile" href="profile.php"><img <img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%;height:40px;width:40px;"></a>
+		<a class="nav-link profile" href="profile.php"><img <img src=<?php echo "userImages/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%;height:40px;width:40px;"></a>
       </div>
     </div>
   </nav>

@@ -36,7 +36,7 @@ if (isset($_POST['bio'])  && !empty($_POST['bio'])) {
 }
 
 if (isset($_FILES["userphoto"]) && !empty($_FILES["userphoto"]["name"])) {
-	$target_dir = "images/";
+	$target_dir = "userImages/";
 	$imageFileType = strtolower(pathinfo($_FILES["userphoto"]["name"],PATHINFO_EXTENSION));
 	$_FILES["userphoto"]["name"] = "userphoto".$_SESSION['id'].'.'.$imageFileType;
 	$target_file = $target_dir . basename($_FILES["userphoto"]["name"]);
