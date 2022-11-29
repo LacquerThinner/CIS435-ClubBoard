@@ -29,6 +29,17 @@ else {
 	<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	
     <style>
+	button {
+	  background-color: silver;
+	  color: black;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border-color: black;
+	  border-style: solid;
+	  cursor: pointer;
+	  width: 100%;
+	}
+		
 		body, html {
 			width: 100%;
 			height: 100%;
@@ -108,7 +119,6 @@ else {
           </li>
         </ul>
       </div>
-	  <a style="text-align:right" role="button" href="logout.php">Log out</a>
 	 <a style="text-align:right" role="button" href="profile.html"><img src=<?php echo "images/" . $photo; ?>  width="8%" height="8%" style="border-radius:50%"></img></a>
     </div>
   </nav>
@@ -156,6 +166,7 @@ $stmt->free_result();
          <p><img src="images/house.png" width="5%" height="5%"></img><?php echo ' ' . $email; ?></p>
          <p><img src="images/pencil.png" width="5%" height="5%"></img><?php echo ' ' . $bio; ?></p>
 		 <a role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
+		 <a role="button" class="btn btn-light" href="logout.php">Log Out</a>
         </div>
       </div>
       <br>
@@ -201,18 +212,6 @@ $stmt->free_result();
 		</div>
 		-->
 	  </div>
-	
-      <div class="container"><br>
-        <img src=<?php echo "images/" . $photo; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
-        <h5><?php echo $realname ?></h5><br>
-        <hr class="clear">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          
-        <button type="button" class="btn btn-light">  Like</button> 
-        <button type="button" class="btn btn-light">  Comment</button> 
-		<a style="text-align:right" role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
-      </div>
-      
       
     <!-- End Right Column -->
     </div>
