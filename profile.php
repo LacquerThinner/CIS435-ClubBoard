@@ -89,17 +89,9 @@ else {
     <link href="carousel.css" rel="stylesheet">
 
 <?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'group6_db';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+//connect to the database
+include('sql/sqlCredentials.php');
 $stmt = $con->prepare('SELECT password, email, realname, bio FROM user_table WHERE userID = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($password, $email, $realname, $bio);
@@ -107,7 +99,6 @@ $stmt->fetch();
 $stmt->free_result();
 
 $stmt = $con->prepare('SELECT DISTINCT club_table.clubID, club_table.name, club_table.clubPhoto FROM membership_table INNER JOIN club_table ON membership_table.clubID = club_table.clubID WHERE membership_table.userID = ?;');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $clubs = $stmt->get_result();
