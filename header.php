@@ -119,7 +119,6 @@
 			width: 80%;
 			height: 100%;
 			float: left;
-			background-color: royalblue;
 			border-collapse: collapse;
 		}
 	
