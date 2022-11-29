@@ -196,20 +196,7 @@ $stmt->free_result();
 		  </div>
 		</div>
 		-->
-	  </div>
-	
-      <div class="container"><br>
-        <img src=<?php echo "images/" . $photo; ?> alt="Avatar" width="5%" height="5%" style="border-radius:50%">
-        <h5><?php echo $realname ?></h5><br>
-        <hr class="clear">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          
-        <button type="button" class="btn btn-light">  Like</button> 
-        <button type="button" class="btn btn-light">  Comment</button> 
-		<a style="text-align:right" role="button" class="btn btn-light" href="editUser.html">Edit Profile</a>
-      </div>
-      
-      
+	  </div>  
     <!-- End Right Column -->
     </div>
 
