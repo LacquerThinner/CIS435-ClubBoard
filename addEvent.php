@@ -10,13 +10,13 @@ $club_id = $_GET['id'];
 //connect to the database
 include('sql/sqlCredentials.php');
 // Now we check if the data was submitted, isset() function will check if the data exists.
-if (!isset($_POST['title'], $_POST['date'], $_POST['time'], $_POST['description'])) {
+if (!isset($_POST['eventTitle'], $_POST['date'], $_POST['time'], $_POST['description'])) {
 	// Could not get the data that should have been sent.
 	exit('The post needs a title, date, time, and description!');
 }
 
 // Make sure the submitted registration values are not empty.
-if (empty($_POST['title'] || $_POST['date'] || $_POST['time'] || $_POST['description'])) {
+if (empty($_POST['eventTitle'] || $_POST['date'] || $_POST['time'] || $_POST['description'])) {
 	// One or more values are empty.
 	exit('The post needs a title, date, time, and description!');
 }
@@ -47,7 +47,7 @@ if ($stmt = $con->prepare('SELECT eventID FROM event_table WHERE clubID = ?')) {
 }
 	
 if ($stmt = $con->prepare('INSERT INTO event_table (clubID, title, description, date, time) VALUES (?, ?, ?, ?, ?)')) {
-			$stmt->bind_param('issss', $club_id, $_POST['title'], $_POST['description'], $_POST['date'], $_POST['time']);
+			$stmt->bind_param('issss', $club_id, $_POST['eventTitle'], $_POST['description'], $_POST['date'], $_POST['time']);
 			$stmt->execute();
 			$stmt->free_result();
 		} else {

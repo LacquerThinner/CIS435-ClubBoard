@@ -20,8 +20,8 @@ if (empty($_POST['club-name']) || empty($_POST['bio']) || empty($_POST['category
 	exit('Please complete the registration form');
 }
 
-if ($_FILES["img"]["size"] > 500000) {
-		exit("Sorry, your image is too large.");
+if ($_FILES["img"]["size"] > 1000000) {
+	exit('Sorry, your image is too large.');
 }
 
 // We need to check if the account with that username exists.

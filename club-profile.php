@@ -166,10 +166,10 @@ if ($_SESSION['admin']) {
 			<?php
 				if($isAdmin) {
 					echo '<form action="addEvent.php?id='.$club_id.'" method="post" autocomplete="off" enctype="multipart/form-data">
-								<input type="text" name="title" placeholder="Title" id="title">
+								<input type="text" name="eventTitle" placeholder="Title" id="eventTitle">
 								<br>
-								<input type="date" name="date" placeholder="Date" id="date">
-								<input type="time" name="time" placeholder="Time" id="time">
+								<input type="date" name="date" id="date">
+								<input type="time" name="time" id="time">
 								<br>
 								<textarea id="description" name="description" placeholder="Description" rows="4" cols="50"></textarea>
 								<br>
