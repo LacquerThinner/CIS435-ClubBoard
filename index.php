@@ -42,7 +42,9 @@ else {
             <p><a class="btn btn-lg btn-primary" href="register.html">Sign up today</a></p>
           </div>-->
         </div>
+   
       </div>
+    </div>
   </div>
   </div>
   <!-- Marketing messaging and featurettes

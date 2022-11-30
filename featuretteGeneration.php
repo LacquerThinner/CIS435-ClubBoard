@@ -7,7 +7,7 @@ $getQuery = 'SELECT clubID, name, bio, clubPhoto FROM club_table ORDER BY clubID
 $resultFeature = mysqli_query($con, $getQuery);
 ?>
 
-<html>
+
 <h2 style="text-align:center; padding-top:20px">Recently Created Clubs</h2>
 	<div class="container marketing">
 		<div class="row" style="padding-top: 20px">
@@ -25,4 +25,3 @@ $resultFeature = mysqli_query($con, $getQuery);
 			?>
 		</div>
 	</div>
-</html>
