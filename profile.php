@@ -95,7 +95,7 @@ $stmt->free_result();
 			<p><img src= <?php echo "images/" . $row['clubPhoto']; ?> style="height:15%;width:15%;" alt="Club Photo"> <?php echo $row['name']; ?></p>
 					</div>
 				</a>
-				<a role="button" class="btn btn-light" href="leaveClub.php?id=<?php echo leaveClub.php?id= $row['clubID'] ?>" >Leave Club</a>
+				<a role="button" class="btn btn-light" href="leaveClub.php?id=<?php echo $row['clubID'] ?>" >Leave Club</a>
 			<?php } ?>
 			  
 		  </div>
