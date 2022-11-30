@@ -1,33 +1,4 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Edit User</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-	</head>
-	<body>
-		<div class="login-container">
-			<h1>Edit User</h1>
-			<form action="editUser.php" method="post" autocomplete="off" enctype="multipart/form-data">
-				<label for="realname">
-					<i class="fas fa-user"></i>
-				</label>
-				<input type="text" name="realname" placeholder="Name" id="realname">
-				<label for="bio">
-					<i class="fas fa-archive"></i>
-				</label>
-				<textarea id="bio" name="bio" placeholder="Bio" rows="4" cols="50"></textarea>
-				<label for="userphoto">
-					<i class="fas fa-upload"></i>
-				</label>
-				<input type="file" name="userphoto" id="userphoto">
-				<input type="submit" value="Save">
-			</form>
-		</div>
-	</body>
-</html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -127,7 +98,7 @@
       }
 	  
 	  .profile {
-		align-items: end;
+		float: right;
 	  }
 	  
 	  .search_bar {
@@ -170,6 +141,24 @@
     </div>
   </nav>
 </header>
+		<div class="login-container">
+			<h1>Edit User</h1>
+			<form action="editUser.php" method="post" autocomplete="off" enctype="multipart/form-data">
+				<label for="realname">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="realname" placeholder="Name" id="realname">
+				<label for="bio">
+					<i class="fas fa-archive"></i>
+				</label>
+				<textarea id="bio" name="bio" placeholder="Bio" rows="4" cols="50"></textarea>
+				<label for="userphoto">
+					<i class="fas fa-upload"></i>
+				</label>
+				<input type="file" name="userphoto" id="userphoto">
+				<input type="submit" value="Save">
+			</form>
+		</div>
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
   
