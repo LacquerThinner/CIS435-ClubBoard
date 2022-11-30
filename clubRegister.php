@@ -20,7 +20,7 @@ if (empty($_POST['club-name']) || empty($_POST['bio']) || empty($_POST['category
 	exit('Please complete the registration form');
 }
 
-if ($_FILES["img"]["size"] > 1000000) {
+if ($_FILES["img"]["size"] > 5000000) {
 	exit('Sorry, your image is too large.');
 }
 

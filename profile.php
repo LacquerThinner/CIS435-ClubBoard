@@ -91,7 +91,7 @@ $stmt->free_result();
 			<?php
 		    while ($row = mysqli_fetch_array($clubs)) {?> 
 				<a href="<?php echo 'club-profile-' . $row['clubID'] ?>" style="color:black;text-decoration: none;">
-					<div class="grid-item">
+					<div class="col-lg-4 child">
 			<p><img src= <?php echo "images/" . $row['clubPhoto']; ?> style="height:15%;width:15%;" alt="Club Photo"> <?php echo $row['name']; ?></p>
 					</div>
 				</a>
