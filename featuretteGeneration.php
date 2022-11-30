@@ -1,7 +1,6 @@
 <?php
 //connect to the database
 include('sql/sqlCredentials.php');
-include('header.php');
 
 //create statement
 $getQuery = 'SELECT clubID, name, bio, clubPhoto FROM club_table ORDER BY clubID DESC LIMIT 3';
