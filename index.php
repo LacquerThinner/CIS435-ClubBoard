@@ -104,7 +104,7 @@ else {
 
    /END THE FEATURETTES -->
 
-  </div><!-- /.container -->
+  <!-- /.container -->
 
 
   <!-- FOOTER -->
