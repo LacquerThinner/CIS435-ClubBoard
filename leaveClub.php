@@ -10,8 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 include('sql/sqlCredentials.php');
 
 $club_id = $_GET['id'];
-if ($stmt = $con->prepare('DELETE FROM membership_table WHERE clubID = ? && userID = ?')) {
-	$admin = false;
+if ($stmt = $con->prepare('DELETE FROM membership_table WHERE clubID = ? AND userID = ?')) {
 	$stmt->bind_param('ii', $club_id, $_SESSION['id']);
 	$stmt->execute();
 	$stmt->free_result();
