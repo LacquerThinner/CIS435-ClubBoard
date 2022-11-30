@@ -1,7 +1,7 @@
 <?php
 $rules = array( 
-    'clubs'   => "/clubs-(?'page'\d+)",    // '/clubs.php-clubID'
-    'club-profile'  => "/club-profile-(?'id'\d+)",        // '/category/category-slug'
+    'clubs'   => "/clubs-(?'page'\d+)",    // '/clubs.php-pageNumber'
+    'club-profile'  => "/club-profile-(?'id'\d+)",        // '/category/club-profile.php-clubID'
     'home'      => "/"                                      // '/'
 );
 

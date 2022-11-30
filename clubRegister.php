@@ -95,7 +95,7 @@ if ($stmt = $con->prepare('SELECT clubID FROM club_table WHERE name = ?')) {
 			if ($stmt = $con->prepare('UPDATE club_table SET clubPhoto = ? WHERE clubID = ?')) {
 			$stmt->bind_param('si', $_FILES['img']['name'], $clubid);
 			$stmt->execute();
-			echo 'You have successfully created a new club!<br><a href="club-profile.php?id='.$clubid.'">Club Profile</a>';
+			echo 'You have successfully created a new club!';
 			header('Location: club-profile-'.$clubid);
 			}
 			else {
