@@ -121,16 +121,62 @@
 			float: left;
 			border-collapse: collapse;
 		}
-	
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
 	  
 	#searchBarWrap{
 		display: flex;
 		justify-content: center;
+	}
+	
+	.clubsmiddlepane {
+		margin-top: 10px;
+		width: 100%;
+		height: 100%;
+		float: left;
+		border-collapse: collapse;
+		min-height: 100vh;
+		padding: 2rem;  
+		background-size: cover;
+	}
+	
+	input[type=submit] {
+		background-color: silver;
+		color: black;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border-color: black;
+		border-style: solid;
+		cursor: pointer;
+		width: 100%;
+	}
+	
+	.grid-container {
+		width: 100%; /* Try setting this to 400px or something */
+		display: table;
+	}
+		
+	.child {
+		display: table-cell;
+	}
+		
+	.grid-item {
+		width: 100%;
+		height: 100px;
+		background-color: silver;
+	}
+		
+	.grid-item img{
+		height: 100px;
+		width: 100px;
+		float: left;
+		border-radius: 50%;
+	}
+		
+	.grid-item h2{
+		text-align: center;
+	}
+		
+	.grid-item p{
+		text-align: center;
 	}
     </style>
 

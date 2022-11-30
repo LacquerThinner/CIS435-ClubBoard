@@ -14,106 +14,6 @@ else {
   <?php
   include('header.php');
   ?>
-
-    <style>
-		body, html {
-			width: 100%;
-			height: 100%;
-			margin: 0;
-		}
-		
-		.container {
-			width: 100%;
-			height: 100%;
-		}
-		
-		.leftpane {
-			margin-top: 10px;
-			margin-right: 10px;
-			width: 25%;
-			height: 100%;
-			float: left;
-			border-collapse: collapse;
-			padding: 2rem;
-		}
-
-		.middlepane {
-			margin-top: 10px;
-			width: 100%;
-			height: 100%;
-			float: left;
-			border-collapse: collapse;
-			min-height: 100vh;
-			padding: 2rem;  
-			background-size: cover;
-		}
-		
-		input[type=submit] {
-		  background-color: silver;
-		  color: black;
-		  padding: 14px 20px;
-		  margin: 8px 0;
-		  border-color: black;
-		  border-style: solid;
-		  cursor: pointer;
-		  width: 100%;
-		}
-		
-		.grid-container {
-			width: 100%; /* Try setting this to 400px or something */
-			display: table;
-		}
-		
-		.child {
-			display: table-cell;
-		}
-		
-		.grid-item {
-			width: 100%;
-			height: 100px;
-			background-color: silver;
-		}
-		
-		.grid-item img{
-			height: 100px;
-			width: 100px;
-			float: left;
-			border-radius: 50%;
-		}
-		
-		.grid-item h2{
-			text-align: center;
-		}
-		
-		.grid-item p{
-			text-align: center;
-		}
-	
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
   
   <?php
 	//$conn = mysqli_connect('localhost', 'root', '');
@@ -173,7 +73,7 @@ else {
     $result = mysqli_query($conn, $getQuery);   
 ?>	
     
-	<div class="middlepane">
+	<div class="clubsmiddlepane">
 		<div class="grid-container">
 		<?php
 			$row_count = 0;
